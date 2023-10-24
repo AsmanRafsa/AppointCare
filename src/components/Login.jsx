@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
+import axios from "axios";
+import { StateContext } from "../context/state";
 
 function LogIn() {
+  const { isLogIn, setIsLogIn } = useContext(StateContext);
+  const navigate = useNavigate();
+
+
+  const loginUrl = "http://127.0.0.1:8000/api/user/token/";
+
   const [show, setShow] = useState();
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState({});
@@ -12,9 +20,31 @@ function LogIn() {
   }
   function handleLogin(e) {
     e.preventDefault();
+
+    axios
+      .post(loginUrl, {
+        username: formData.username,
+        password: formData.password,
+      })
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("access_token", response.data.access);
+        localStorage.setItem("refresh", response.data.refresh);
+        localStorage.setItem("username", response.data.username);
+        localStorage.setItem("password", response.data.password);
+        if (response.status === 200) {
+          isLogIn.is_loggedIn = true;
+          navigate("/")
+        }
+      });
+      
+      console.log(isLogIn.is_loggedIn);
+
+
+
     const errors = {};
-    (formData.email === undefined || formData.email === "") &&
-      (errors.email = "Please enter your Email");
+    (formData.username === undefined || formData.username === "") &&
+      (errors.username = "Please enter your username");
     (formData.password === undefined || formData.password === "") &&
       (errors.password = "Please enter your Password");
 
@@ -37,10 +67,10 @@ function LogIn() {
             )}
 
             <input
-              type="email"
-              placeholder="Email Address"
+              type="text"
+              placeholder="Username"
               className="rounded-[5px] w-[80%] self-center py-6 px-6 border-2 border-gray-300 outline-none"
-              name="email"
+              name="username"
               onChange={(e) => handleChange(e)}
             />
             {formErrors.password && (
