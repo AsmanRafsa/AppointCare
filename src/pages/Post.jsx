@@ -1,11 +1,17 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
+
 import { app } from "../firebase";
 import { getStorage, ref, uploadString } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import loaderImage from "../../src/assets/images/loader.gif";
+
+// import { collection, addDoc } from "firebase/firestore";
+// import { db } from "../firebase";
+import loaderImage from "../assets/images/loader.gif";
+
 
 export default function Post() {
   const [formErrors, setFormErrors] = useState({});
@@ -48,14 +54,14 @@ export default function Post() {
 
     // Save to Firebase
     // Add a new document with a generated id.
-    await addDoc(collection(db, "hospitals"), formData);
-    console.log("Document is written");
+    // await addDoc(collection(db, "hospitals"), formData);
+    // console.log("Document is written");
   }
   const uploadImageChange = (e) => {
-    const storage = getStorage(app);
+    // const storage = getStorage(app);
     setLoader  (false);
-    const file = e.target.files[0];
-    const storageRef = ref(storage, `hospitals/${file.name}`);
+    // const file = e.target.files[0];
+    // const storageRef = ref(storage, `hospitals/${file.name}`);
     const reader = new FileReader();
     reader.onload = function () {
       console.log(reader.result);

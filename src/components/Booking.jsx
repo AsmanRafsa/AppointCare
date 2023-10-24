@@ -1,10 +1,10 @@
 import { BiSearch } from "react-icons/bi";
 // import { Institutions } from "../data";
-import { AiOutlineHeart } from "react-icons/ai";
+// import { AiOutlineHeart } from "react-icons/ai";
 import { StateContext } from "../context/state";
 import { useState, useContext, useEffect } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+// import { collection, query, where, getDocs } from "firebase/firestore";
+// import { db } from "../firebase";
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -15,16 +15,16 @@ function Booking() {
   const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     setHospitals([]);
-    (async function () {
-      const q = query(collection(db, "hospitals"));
+    // (async function () {
+    //   const q = query(collection(db, "hospitals"));
 
-      const querySnapshot = await getDocs();
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        setHospitals((prev) => [...prev, doc.data()]);
-        console.log(doc.id, " => ", doc.data());
-      });
-    })();
+    //   const querySnapshot = await getDocs();
+    //   querySnapshot.forEach((doc) => {
+    //     // doc.data() is never undefined for query doc snapshots
+    //     setHospitals((prev) => [...prev, doc.data()]);
+    //     console.log(doc.id, " => ", doc.data());
+    //   });
+    // })();
   }, []);
   return (
     <div className="text-xl">
