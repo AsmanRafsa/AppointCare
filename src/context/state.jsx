@@ -8,6 +8,13 @@ export default function StateProvider({ children }) {
 
   return (
     <StateContext.Provider value={{ book, setBook,isLogin,setIsLogin, hospitals, setHospitals,currentUser,setCurrentUser }}>
+  const [isLogIn, setIsLogIn] = useState({
+    is_loggedIn: localStorage.getItem("access_token") ? true : false,
+    username: "",
+    email: "",
+  });
+  return (
+    <StateContext.Provider value={{ book, setBook, hospitals, setHospitals,isLogIn,setIsLogIn }}>
       {children}
     </StateContext.Provider>
   );

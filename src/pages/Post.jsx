@@ -1,7 +1,17 @@
 import { useState } from "react";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
+
+
+import { app } from "../firebase";
+import { getStorage, ref, uploadString } from "firebase/storage";
+import { collection, addDoc } from "firebase/firestore";
+
 import loaderImage from "../../src/assets/images/loader.gif";
+
+// import { collection, addDoc } from "firebase/firestore";
+// import { db } from "../firebase";
+
 
 export default function Post() {
   const [formErrors, setFormErrors] = useState({});
@@ -39,6 +49,31 @@ export default function Post() {
     console.log(errors);
     console.log(formData);
   }
+
+    // Save to Firebase
+    // Add a new document with a generated id.
+    // await addDoc(collection(db, "hospitals"), formData);
+    // console.log("Document is written");
+  }
+  const uploadImageChange = (e) => {
+    // const storage = getStorage(app);
+    setLoader  (false);
+    // const file = e.target.files[0];
+    // const storageRef = ref(storage, `hospitals/${file.name}`);
+    const reader = new FileReader();
+    reader.onload = function () {
+      console.log(reader.result);
+      // Upload to Firebase
+      // Data URL string
+      uploadString(storageRef, reader.result, "data_url").then((snapshot) => {
+        console.log("Uploaded a data_url string!");
+        setLoader(true);
+        const imgUrl = `https://firebasestorage.googleapis.com/v0/b/appoint-care.appspot.com/o/hospitals%2F${file.name}?alt=media`;
+        setFormData((prev) => ({ ...prev, file: imgUrl }));
+      });
+    };
+    reader.readAsDataURL(file);
+  };
 
   return (
     <div>
