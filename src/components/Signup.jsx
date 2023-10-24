@@ -31,7 +31,7 @@ function SignUp() {
       })
       .then((response) => {
         console.log(response);
-        navigate("/login");
+        navigate("/");
         setIsLogIn({
           isLogIn: true,
           username: localStorage.getItem("username"),
