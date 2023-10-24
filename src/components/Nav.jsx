@@ -15,6 +15,12 @@ export default function Nav() {
             <Link to="/">
               <li className="text-[#318bd4] font-medium text-[1.3rem]">Home</li>
             </Link>
+            <Link to="/hospitalregister">
+              <li>Register</li>
+            </Link>
+            <Link to="/hospitallogin">
+              <li>Login</li>
+            </Link>
             <Link to="/post">
               <li className="text-[#318bd4] font-medium text-[1.3rem]">Post A Hospital</li>
             </Link>

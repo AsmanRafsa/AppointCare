@@ -4,7 +4,9 @@ import Booking from "./Booking";
 import SignupPage from "../pages/SignupPage";
 import LoginPage from "../pages/LoginPage";
 import InstitutionPage from "../pages/InstitutionPage";
+import HospitalRegisterpage from "../pages/HospitalRegisterPage";
 import Post from "../pages/Post";
+import HospitalLoginPage from "../pages/HospitalLoginPage";
 export default function Router() {
   return (
     <BrowserRouter>
@@ -13,7 +15,9 @@ export default function Router() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/register" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/post" element={<Post />} />
+        <Route path="/hospitalregister" element={<HospitalRegisterpage/>} />
+        <Route path="/hospitallogin" element={<HospitalLoginPage/>} />
+        <Route path="/post" element={<Post/>} />
         <Route path="/hospital/:name" element={<InstitutionPage />} />
       </Routes>
     </BrowserRouter>
