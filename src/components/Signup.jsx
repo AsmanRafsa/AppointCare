@@ -147,7 +147,6 @@ function SignUp() {
         <p className="my-6">
           Already have an account yet?
           <Link to="/login">
-            {" "}
             <button className="text-blue-400">Sign In</button>
           </Link>
         </p>
