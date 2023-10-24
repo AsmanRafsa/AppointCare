@@ -1,9 +1,9 @@
-import coptic from "../assets/images/coptic.jpeg";
+// import coptic from "../assets/images/coptic.jpeg";
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { StateContext } from "../context/state";
 import { useParams } from "react-router-dom";
-import { collection, query, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+// import { collection, query, getDocs } from "firebase/firestore";
+// import { db } from "../firebase";
 const DatePicker = () => {
   const [date, setDate] = useState("");
   const dateInputRef = useRef(null);
@@ -16,16 +16,16 @@ function Institution() {
   const { hospitals, setHospitals } = useContext(StateContext);
   useEffect(() => {
     setHospitals([]);
-    (async function () {
-      const q = query(collection(db, "hospitals"));
+    // (async function () {
+    //   const q = query(collection(db, "hospitals"));
 
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        setHospitals((prev) => [...prev, doc.data()]);
-        // console.log(doc.id, " => ", doc.data());
-      });
-    })();
+    //   const querySnapshot = await getDocs(q);
+    //   querySnapshot.forEach((doc) => {
+    //     // doc.data() is never undefined for query doc snapshots
+    //     setHospitals((prev) => [...prev, doc.data()]);
+    //     // console.log(doc.id, " => ", doc.data());
+    //   });
+    // })();
   }, []);
   const { name } = useParams();
   const nameWithSpace = name.split("-").join(" ");

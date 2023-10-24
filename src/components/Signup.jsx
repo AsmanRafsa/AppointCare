@@ -1,22 +1,44 @@
+import axios from "axios";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { StateContext } from "../context/state";
+import { useNavigate } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 function SignUp() {
-  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+
+  const { isLogIn, setIsLogIn } = useContext(StateContext);
   const [formData, setFormData] = useState({});
+  const [show, setShow] = useState(false);
   const [formErrors, setFormErrors] = useState({});
-
-  function handleGoogleAuth() {
-    const [currentUser, setCurrentUser] = useState;
-    googleAuth();
-  }
-
+  const signUpUrl = "http://127.0.0.1:8000/api/user/create/";
+  // console.log(formData);
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
   function handleSignup(e) {
     e.preventDefault();
+
+    axios
+      .post(signUpUrl, {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        username: formData.username,
+        password: formData.password,
+      })
+      .then((response) => {
+        console.log(response);
+        navigate("/login");
+        setIsLogIn({
+          isLogIn: true,
+          username: localStorage.getItem("username"),
+          email: localStorage.getItem("email"),
+        });
+      });
+
     const errors = {};
     (formData.firstName === undefined || formData.firstName === "") &&
       (errors.firstName = "Please enter your First Name");
@@ -24,8 +46,8 @@ function SignUp() {
       (errors.lastName = "Please enter your Last Name");
     (formData.email === undefined || formData.lastName === "") &&
       (errors.email = "Please enter your Email");
-    (formData.phoneNumber === undefined || formData.phoneNumber === "") &&
-      (errors.phoneNumber = "Please enter your Phone Number");
+    (formData.username === undefined || formData.username === "") &&
+      (errors.username = "Please enter your username");
     (formData.password === undefined || formData.password === "") &&
       (errors.password = "Please enter your Password");
     (formData.confirmPassword === undefined ||
@@ -73,7 +95,7 @@ function SignUp() {
             )}
             <input
               type="email"
-              placeholder="EmailAddress"
+              placeholder="Email Address"
               className="rounded py-4 px-6 border-2 border-gray-300 outline-blue-400"
               name="email"
               onChange={(e) => handleChange(e)}
@@ -83,9 +105,9 @@ function SignUp() {
             )}
             <input
               type="text"
-              placeholder="Phone Number"
+              placeholder="Username"
               className="rounded py-4 px-6 border-2 border-gray-300 outline-blue-400"
-              name="phoneNumber"
+              name="username"
               onChange={(e) => handleChange(e)}
             />
             {formErrors.password && (
@@ -137,17 +159,13 @@ function SignUp() {
           <div>
             <img src="" alt="" />
           </div>
-          <button
-            className="text-3xl text-blue-500 font-bold"
-            onClick={handleGoogleAuth}
-          >
+          <button className="text-3xl text-blue-500 font-bold">
             Sign In With Google
           </button>
         </div>
         <p className="my-6">
           Already have an account yet?
           <Link to="/login">
-            {" "}
             <button className="text-blue-400">Sign In</button>
           </Link>
         </p>
