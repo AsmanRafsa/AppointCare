@@ -2,11 +2,6 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 
-
-import { app } from "../firebase";
-import { getStorage, ref, uploadString } from "firebase/storage";
-import { collection, addDoc } from "firebase/firestore";
-
 import loaderImage from "../../src/assets/images/loader.gif";
 
 // import { collection, addDoc } from "firebase/firestore";
@@ -54,7 +49,7 @@ export default function Post() {
     // Add a new document with a generated id.
     // await addDoc(collection(db, "hospitals"), formData);
     // console.log("Document is written");
-  }
+  
   const uploadImageChange = (e) => {
     // const storage = getStorage(app);
     setLoader  (false);
@@ -224,4 +219,4 @@ export default function Post() {
       <Footer className="flex flex-1" />
     </div>
   );
-}
+            }

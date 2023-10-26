@@ -1,7 +1,4 @@
-// "use client";
-// import { StateContext } from "@/context/state";
-// import { useRouter } from "next/navigation";
-// import { useContext } from "react";
+
 
 import Footer from "./Footer";
 import Nav from "./Nav";
