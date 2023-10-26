@@ -3,8 +3,8 @@ import logo from "../assets/images/appointCare-removebg-preview.png";
 
 export default function Nav() {
   return (
-    <div className=" bg-gray-200">
-      <div className="container mx-auto flex justify-between gap-5 items-center">
+    <div className=" right-0 top-0 bottom-0 left-0 fixed h-[15vh] bg-gray-200 shadow-[0_0_0_0px]">
+      <div className="container  mx-auto flex   justify-between gap-5 items-center">
         <div>
           <Link to="/">
             <img src={logo} className="w-[6vw] h-[12vh]" />
@@ -15,20 +15,18 @@ export default function Nav() {
             <Link to="/">
               <li className="text-[#318bd4] font-medium text-[1.3rem]">Home</li>
             </Link>
+           
             <Link to="/hospitalregister">
-              <li>Register</li>
-            </Link>
-            <Link to="/hospitallogin">
-              <li>Login</li>
-            </Link>
-            <Link to="/post">
-              <li className="text-[#318bd4] font-medium text-[1.3rem]">Post A Hospital</li>
+              <li className="text-[#318bd4] font-medium text-[1.3rem]">Register Hospital</li>
             </Link>
             <Link to="/register">
               <li className="text-[#318bd4] font-medium text-[1.3rem]">Sign Up</li>
             </Link>
             <Link to="/login">
               <li className="text-[#318bd4] font-medium text-[1.3rem]">Log In</li>
+            </Link>
+            <Link to="/hospitaldashboard">
+              <li className="text-[#318bd4] font-medium text-[1.3rem]">Hospital Dashboard</li>
             </Link>
           </ul>
         </div>

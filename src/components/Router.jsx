@@ -5,12 +5,11 @@ import SignupPage from "../pages/SignupPage";
 import LoginPage from "../pages/LoginPage";
 import InstitutionPage from "../pages/InstitutionPage";
 import HospitalRegisterpage from "../pages/HospitalRegisterPage";
-import Post from "../pages/Post";
 import HospitalLoginPage from "../pages/HospitalLoginPage";
 import HospitalDashboardPage from "../pages/HospitalDashboardPage";
-import AddDoctorForm from "../pages/AddDoctorForm";
 import DoctorDetails from "../components/DoctorsDetails";
 import LogoutHospital from "../components/LogoutHospital";
+import AddDoctorForm from "./AddDoctorForm";
 export default function Router() {
   return (
     <BrowserRouter>
@@ -25,8 +24,6 @@ export default function Router() {
         <Route path="/hospitaldashboard" element={<HospitalDashboardPage/>} />
         <Route path="/doctordetails" element={<DoctorDetails/>} />
         <Route path="/logouthospital" element={<LogoutHospital/>} />
-
-        <Route path="/post" element={<Post/>} />
         <Route path="/hospital/:name" element={<InstitutionPage />} />
       </Routes>
     </BrowserRouter>

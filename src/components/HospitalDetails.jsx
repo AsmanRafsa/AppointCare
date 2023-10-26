@@ -5,24 +5,35 @@ import Notifications from "./Notifications";
 import HospitalLogin from "./HospitalLogin";
 import { Link } from "react-router-dom";
 import axios from "axios";
-function HospitalDashboard() {
+import SideBar from "./SideBar";
+function HospitalDetails() {
   const { isLogin, setIsLogin } = useContext(StateContext);
-  const [hospitals, setHospital] = useState([]);
+  const [details, setDetails] = useState([]);
   //   const [myHospital, setMyHospital] = useState([]);
   const [error, setError] = useState(null);
-  const hospitalUrl = "http://127.0.0.1:8000/api/hospitaldetails/";
+  const hospitalId = JSON.parse(localStorage.getItem("user")).id;
+  const hospitalDetailsUrl = "http://127.0.0.1:8000/api/hospitaldetails/";
+  const getHospitalDetailsUrl = `http://127.0.0.1:8000/api/hospitaldetails/${hospitalId}`;
+  console.log(getHospitalDetailsUrl);
 
   const [formData, setFormData] = useState([]);
   const [addHospital, setAddHospital] = useState({
-    hospital:JSON.parse(localStorage.getItem("user")).id,
+    hospital: JSON.parse(localStorage.getItem("user")).id,
     hospital_Slogan: "",
     hospital_Location: "",
     hospital_Description: "",
     hospital_Image: null,
   });
-  // function handleChange(e) {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // }
+
+  useEffect(() => {
+    fetch(getHospitalDetailsUrl).then((res) =>
+      res.json().then((data) => {
+        setDetails(data)
+      })
+    );
+  }, []);
+
+  // console.log(details)
 
   function handleAdd(e) {
     e.preventDefault(e);
@@ -39,15 +50,8 @@ function HospitalDashboard() {
       newFormData.append = ("hospital_Image", addHospital.hospital_Image);
     }
 
-// newFormData.forEach((key, value)=>{
-//   console.log(`${value}: ${key}`)
-// })   
-// const location=newFormData.get("hospital")
-//  console.log(addHospital)
-//  console.log(typeof(location))
-
     axios
-      .post(hospitalUrl, newFormData)
+      .post(hospitalDetailsUrl, newFormData)
       .then((response) => {
         console.log(response);
       })
@@ -57,46 +61,31 @@ function HospitalDashboard() {
   }
 
   return (
-    <div className=" p-4">
-      <div className="flex items-center w-[100%] gap-[5em] justify-center">
-        <div className="flex-1 w-[40%] bg- h-[600px] rounded-lg shadow-[0_0_5px_lightgray] flex-col it">
-          <p className="text-5xl  ">
-            {JSON.parse(localStorage.getItem("user")).name}
-          </p>
-          <ul className=" ">
-            <li className=" border-b-2 mt-[4em]">HospitalDetails</li>
-            <Link to={"/doctordetails"}>
-              <li className=" border-b-2 my-[6em]">Doctors</li>
-            </Link>
-            <li className=" border-b-2 py-[2e]">Notifications</li>
-          </ul>
-          <Link to={'/logouthospital'}><button className="bg-[#318bd4] p-3 mt-[6em] text-white rounded-[5px]">
-            LOGOUT
-          </button></Link>
-        </div>
-        <div className=" w-[60%] bg-white shadow-[0_0_5px_lightgray] ">
+    <div className=" mt-[15vh] p-4">
+      <div className="flex items-center bg-gray-200 w-[100%] gap-[5em] ">
+       
+        <div className=" w-[100%] bg-white ">
           <h2 className="text-3xl ">Hospital's Dashboard</h2>
 
           <p className="outline-none border-2 m-3">
             Name:{JSON.parse(localStorage.getItem("user")).name}
           </p>
           <p className="outline-none border-2 m-3">
-            Email{JSON.parse(localStorage.getItem("user")).email}
+            Email:{JSON.parse(localStorage.getItem("user")).email}
           </p>
           <p className="outline-none border-2 m-3">
             PhoneNumber:{JSON.parse(localStorage.getItem("user")).phone_number}
           </p>
 
-          {/* <p>Update</p> */}
           <div className="flex flex-col">
             <input
-              // onChange={(e) => handleChange(e)}
               onChange={(e) =>
                 setAddHospital({
                   ...addHospital,
                   hospital_Slogan: e.target.value,
                 })
               }
+              value={details.hospital_Slogan}
               type="text"
               name="hospital_Slogan"
               placeholder="slogan"
@@ -106,13 +95,13 @@ function HospitalDashboard() {
               type="file"
               name="hospital_Image"
               id=""
-              // onChange={(e) => handleChange(e)}
               onChange={(e) =>
                 setAddHospital({
                   ...addHospital,
                   hospital_Image: e.target.files[0],
                 })
               }
+             
               className="outline-none border-2 m-3"
             />
             <input
@@ -120,13 +109,13 @@ function HospitalDashboard() {
               name="hospital_Location"
               placeholder="location"
               className="outline-none border-2 m-3"
-              // onChange={(e) => handleChange(e)}
               onChange={(e) =>
                 setAddHospital({
                   ...addHospital,
                   hospital_Location: e.target.value,
                 })
               }
+              value={details.hospital_Location}
             />
             <textarea
               type="text"
@@ -134,7 +123,7 @@ function HospitalDashboard() {
               placeholder="Description"
               className="outline-none border-2 m-3"
               rows="7"
-              // onChange={(e) => handleChange(e)}
+              value={details.hospital_Description}
               onChange={(e) =>
                 setAddHospital({
                   ...addHospital,
@@ -155,4 +144,4 @@ function HospitalDashboard() {
     </div>
   );
 }
-export default HospitalDashboard;
+export default HospitalDetails;

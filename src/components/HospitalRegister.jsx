@@ -74,7 +74,7 @@ function HospitalRegister() {
                 placeholder="EmailAddress"
                 className="rounded py-4 px-6 border-2 border-gray-300 outline-blue-400"
                 name="email"
-                // onChange={(e) => handleChange(e)}
+                onChange={(e) => handleChange(e)}
                 
               />
               {formErrors.phone_number && (
