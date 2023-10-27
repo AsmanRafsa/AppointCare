@@ -2,15 +2,14 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 
-import { app } from "../firebase";
-import { getStorage, ref, uploadString } from "firebase/storage";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase";
+// import { app } from "../firebase";
+// import { getStorage, ref, uploadString } from "firebase/storage";
+// import { collection, addDoc } from "firebase/firestore";
+// import { db } from "../firebase";
 import loaderImage from "../../src/assets/images/loader.gif";
 
 // import { collection, addDoc } from "firebase/firestore";
 // import { db } from "../firebase";
-import loaderImage from "../assets/images/loader.gif";
 
 
 export default function Post() {
@@ -19,7 +18,6 @@ export default function Post() {
   const [loader, setLoader] = useState(true);
   const [check, setCheck] = useState(true);
 
-  // Firebase info
 
   
   const handleChange = (e) => {
