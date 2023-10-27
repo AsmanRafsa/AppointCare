@@ -22,7 +22,7 @@ function HospitalDashboardPage() {
         }
     }
     return(
-        <div className="flex flex-col h-[70vh]">
+        <div className="flex flex-col h-[100vh]">
             <Nav className="flex-1"/>
             <SideBar setSelectedContent={setSelectedContent}/>
             <div className=" ml-[20vw] flex-1 ">

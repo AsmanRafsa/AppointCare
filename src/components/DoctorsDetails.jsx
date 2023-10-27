@@ -45,10 +45,11 @@ const DoctorDetails = () => {
   };
 
   return (
-    <div className="mt-[15vh] flex items-center gap-2 w-[100%]">
+    <div className="mt-[15vh] flex items-center gap-2 ">
       {/* <h2 className="text-xl text-red-600 font-bold">Doctor List</h2> */}
-      
-      <div className="flex-1 w-60% h-[fit-content] items-center  gap-7 ">
+
+      <div className="flex-1 w-60%  items-center  gap-7 ">
+      <div className="w-[40vw] h-[60vh]  p-[16px] overflow-y-auto">
         <ul className=" space-y-2">
           {doctors.map((doctor, index) => (
             <li
@@ -115,6 +116,8 @@ const DoctorDetails = () => {
             </li>
           ))}
         </ul>
+        </div>
+
       </div>
 
       <AddDoctorForm className="flex-1 w-[40%]" />
