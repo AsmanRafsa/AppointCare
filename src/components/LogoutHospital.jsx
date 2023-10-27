@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Nav from "./Nav";
 import { useContext } from "react";
 import { StateContext } from "../context/state";
+import Ratings from "./Ratings";
 
 export default function LogoutHospital() {
 
@@ -28,7 +29,7 @@ export default function LogoutHospital() {
 
   return (
     <div className="flex flex-col mt-[15vh] h-[100vh]">
-      {/* <Nav className="flex-1"/> */}
+      <Nav className="flex-1"/>
       <div className="container mx-auto shadow flex-1 shadow-gray-500 w-[40vw] h-[30vh] my-[8em] flex flex-col justify-center items-center">
         <h1 className="text-[2rem] font-semibold text-center my-[2em]">
           ARE YOU SURE YOU WANT TO LOG OUT?
@@ -42,7 +43,8 @@ export default function LogoutHospital() {
           </button>
         </div>
       </div>
-      {/* <Footer className="flex-1"/> */}
+      {/* <Ratings/> */}
+      <Footer className="flex-1"/>
     </div>
   );
 }

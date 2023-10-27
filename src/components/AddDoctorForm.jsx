@@ -46,9 +46,9 @@ const AddDoctorForm = () => {
   }
 
   return (
-    <div className="   p-7 mx-auto rounded-lg  shadow-[0_0_5px_lightgray]">
+    <div className="    p-7 mx-auto  shadow-[0_0_5px_lightgray]">
       <h2 className="text-2xl text-center font-bold mb-4">Add A Doctor</h2>
-      <form>
+      <form className=" h-[fit-content]">
         <div className=" ">
           <label
             className="block text-gray-700 text-lg font-bold mb-2"

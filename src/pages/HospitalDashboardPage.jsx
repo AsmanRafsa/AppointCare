@@ -5,7 +5,6 @@ import Nav from "../components/Nav";
 import SideBar from "../components/SideBar";
 import DoctorDetails from "../components/DoctorsDetails";
 import Notifications from "../components/Notifications";
-import LogoutHospital from "../components/LogoutHospital";
 
 function HospitalDashboardPage() {
     const [selectedContent,setSelectedContent] =useState("hospitaldetails")
@@ -18,19 +17,18 @@ function HospitalDashboardPage() {
                 return <DoctorDetails/>
             case "notifications":
                 return <Notifications/>
-            case "logouthospital":
-                return <LogoutHospital/>
             default:
                 <HospitalDetails/>
         }
     }
     return(
-        <div className="flex flex-col h-[100vh]">
+        <div className="flex flex-col h-[70vh]">
             <Nav className="flex-1"/>
             <SideBar setSelectedContent={setSelectedContent}/>
             <div className=" ml-[20vw] flex-1 ">
             {renderContent()}
             </div>
+            {/* <HospitalDashboard/> */}
             <Footer className="flex-1"/>
         </div>
     )

@@ -45,15 +45,15 @@ const DoctorDetails = () => {
   };
 
   return (
-    <div className="mt-[15vh] flex items-center rounded-lg w-[100%]">
+    <div className="mt-[15vh] flex items-center gap-2 w-[100%]">
       {/* <h2 className="text-xl text-red-600 font-bold">Doctor List</h2> */}
       
-      <div className="flex-1 w-60% items-center  gap-7 ">
+      <div className="flex-1 w-60% h-[fit-content] items-center  gap-7 ">
         <ul className=" space-y-2">
           {doctors.map((doctor, index) => (
             <li
               key={index}
-              className="flex justify-between items-center p-2 bg-gray-100 text-gray-800 rounded-lg shadow-md"
+              className="flex justify-between items-center p-2 bg-gray-100 text-gray-800  shadow-[0_0_5px_lightgray]"
             >
               {selectedDoctor === index ? (
                 <div>
@@ -79,7 +79,7 @@ const DoctorDetails = () => {
                   />
                 </div>
               ) : (
-                <div>
+                <div >
                   <img
                     src={`${imageUrl}${doctor.doctorImage}`}
                     alt={doctor.doctorName}

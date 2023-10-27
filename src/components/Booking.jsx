@@ -9,6 +9,7 @@ import { useState, useContext, useEffect } from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
+import Ratings from "./Ratings";
 
 function Booking() {
   const { book, setBook, hospitals, setHospitals } = useContext(StateContext);
@@ -70,7 +71,7 @@ function Booking() {
                       <button className="bg-[#3ba0f3] rounded-full py-3 my-4 text-white px-10">
                         Book Now
                       </button>
-                    </Link>
+                      <Ratings/>                    </Link>
                   </div>
                 </div>
               );

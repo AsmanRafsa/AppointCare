@@ -108,7 +108,7 @@ function HospitalDetails() {
               type="text"
               name="hospital_Location"
               placeholder="location"
-              className="outline-none border-2 m-3"
+              className="outline-none p-2 border-2 m-3"
               onChange={(e) =>
                 setAddHospital({
                   ...addHospital,
