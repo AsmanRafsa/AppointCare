@@ -60,21 +60,34 @@ function HospitalRegister() {
         console.log(formData);
       }
     return(
-        <div className="flex text-xl bg-[url('assets/images/signin.png')] bg-no-repeat bg-contain bg-center w-[100%] ">
+        <div className="flex text-xl mt-[15vh] bg-[url('assets/images/signin.png')] bg-no-repeat bg-contain bg-center w-[100%] ">
         <div className="flex flex-col text-center  mx-auto w-[100%] mt-[5em] mb-[7em]">
           <h1 className="text-4xl font-bold my-8 ">Create Hospital Account</h1>
           <form action="" className="flex flex-col  mx-auto">
             
             <div className="flex flex-col gap-8">
+              
+                              {formErrors.name && (
+                                <p className="text-red-500">{formErrors.name}</p>
+                              )}
+                              <input
+                                type="text"
+                                placeholder="Hospital Name"
+                                className="flex-1 rounded py-4 px-6 border-2 border-gray-300 outline-blue-400"
+                                name="name"
+                                onChange={(e) => handleChange(e)}
+                              />
+                            
               {formErrors.email && (
                 <p className="text-red-500">{formErrors.email}</p>
               )}
               <input
                 type="email"
-                placeholder="Email Address"
+                placeholder="EmailAddress"
                 className="rounded py-4 px-6 border-2 border-gray-300 outline-blue-400"
                 name="email"
                 onChange={(e) => handleChange(e)}
+                
               />
               {formErrors.phone_number && (
                 <p className="text-red-500">{formErrors.phone_number}</p>
@@ -87,18 +100,6 @@ function HospitalRegister() {
                 onChange={(e) => handleChange(e)}
               />
 
-
-                {formErrors.name && (
-                  <p className="text-red-500">{formErrors.name}</p>
-                )}
-                <input
-                  type="text"
-                  placeholder="Hospital Name"
-                  className="flex-1 rounded py-4 px-6 border-2 border-gray-300 outline-blue-400"
-                  name="name"
-                  onChange={(e) => handleChange(e)}
-                />
-              
               
                 
               
@@ -118,20 +119,9 @@ function HospitalRegister() {
                   {show ? <BsFillEyeSlashFill /> : <BsFillEyeFill />}
                 </div>
               </div>
-              {/* {formErrors.confirmPassword && (
-                <p className="text-red-500">{formErrors.confirmPassword}</p>
-              )}
-              <div className="rounded py-4 px-6 border-2 border-gray-300 flex items-center">
-                <input
-                  type="password"
-                  placeholder="Confirm your password"
-                  className="w-[100%] outline-none"
-                  name="confirmPassword"
-                  onChange={(e) => handleChange(e)}
-                />
-              </div> */}
+              
             </div>
-            <div className="flex my-8 justify-between">
+            <div className="flex my-8 items-center gap-3">
               <div className="flex gap-4">
                 <input type="checkbox" className="w-6 h-6" />
                 <p>Remember me</p>
