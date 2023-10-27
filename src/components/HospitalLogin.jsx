@@ -63,7 +63,7 @@ function HospitalLogin(){
     }
 
     return(
-        <div className="text-xl bg-[url('assets/images/signin.png')] bg-no-repeat bg-cover bg-center    ">
+        <div className="text-xl mt-[15vh] bg-[url('assets/images/signin.png')] bg-no-repeat bg-cover bg-center    ">
       <div className="text-center w-[50%] mx-auto">
         <h1 className="text-5xl font-bold mt-0 pt-36 pb-8">
           Hospital Login Account

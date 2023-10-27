@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 export default function Hero() {
   return (
-    <div className="bg-gradient-to-r from-gray-200 to-[#3ba0f3] ">
+    <div className="bg-gradient-to-r from-gray-200 to-[#3ba0f3] mt-[15vh] ">
       <div className="container mx-auto flex items-center justify-center w-[100%] h-[70vh]  mb-[2em]">
         <div className="mt-5 w-[50%] p-10">
           <h1 className="font-bold text-6xl w-[120%]">

@@ -15,7 +15,6 @@ const AddDoctorForm = () => {
   });
 
   const doctorsUrl = "http://127.0.0.1:8000/api/doctors/add/"; // Your API endpoint
-  const doctorImageUrl = "http://127.0.0.1:8000/api";
   function handleChange(e) {
     setDoctorData({ ...doctorData, [e.target.name]: e.target.value });
   }
