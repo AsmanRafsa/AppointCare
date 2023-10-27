@@ -2,12 +2,12 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 
+// import { app } from "../firebase";
+// import { getStorage, ref, uploadString } from "firebase/storage";
+// import { collection, addDoc } from "firebase/firestore";
 
-import { app } from "../firebase";
-import { getStorage, ref, uploadString } from "firebase/storage";
-import { collection, addDoc } from "firebase/firestore";
-
-import loaderImage from "../../src/assets/images/loader.gif";
+// >>>>>>> development
+// import loaderImage from "../../src/assets/images/loader.gif";
 
 // import { collection, addDoc } from "firebase/firestore";
 // import { db } from "../firebase";
@@ -18,6 +18,7 @@ export default function Post() {
   const [formData, setFormData] = useState([]);
   const [loader, setLoader] = useState(true);
   const [check, setCheck] = useState(true);
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

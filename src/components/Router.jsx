@@ -7,6 +7,9 @@ import InstitutionPage from "../pages/InstitutionPage";
 import HospitalRegisterpage from "../pages/HospitalRegisterPage";
 import Post from "../pages/Post";
 import HospitalLoginPage from "../pages/HospitalLoginPage";
+import Userprofile from "./Userprofile";
+import Logout from "./Logout";
+import Profileupdate from "./Profileupdate";
 export default function Router() {
   return (
     <BrowserRouter>
@@ -19,6 +22,10 @@ export default function Router() {
         <Route path="/hospitallogin" element={<HospitalLoginPage/>} />
         <Route path="/post" element={<Post/>} />
         <Route path="/hospital/:name" element={<InstitutionPage />} />
+        <Route path="/profile" element={<Userprofile/>} />
+        <Route path="/logout" element={<Logout/>} />
+        <Route path="/profileupdate" element={<Profileupdate/>} />
+        
       </Routes>
     </BrowserRouter>
   );
