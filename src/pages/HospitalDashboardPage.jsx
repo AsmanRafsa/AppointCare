@@ -1,0 +1,36 @@
+import { useState } from "react";
+import Footer from "../components/Footer";
+import HospitalDetails from "../components/HospitalDetails";
+import Nav from "../components/Nav";
+import SideBar from "../components/SideBar";
+import DoctorDetails from "../components/DoctorsDetails";
+import Notifications from "../components/Notifications";
+
+function HospitalDashboardPage() {
+    const [selectedContent,setSelectedContent] =useState("hospitaldetails")
+
+    const renderContent=()=>{
+        switch(selectedContent){
+            case "hospitaldetails":
+                return <HospitalDetails/>
+            case "doctors":
+                return <DoctorDetails/>
+            case "notifications":
+                return <Notifications/>
+            default:
+                <HospitalDetails/>
+        }
+    }
+    return(
+        <div className="flex flex-col h-[70vh]">
+            <Nav className="flex-1"/>
+            <SideBar setSelectedContent={setSelectedContent}/>
+            <div className=" ml-[20vw] flex-1 ">
+            {renderContent()}
+            </div>
+            {/* <HospitalDashboard/> */}
+            <Footer className="flex-1"/>
+        </div>
+    )
+}
+export default HospitalDashboardPage

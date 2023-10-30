@@ -5,11 +5,12 @@ import SignupPage from "../pages/SignupPage";
 import LoginPage from "../pages/LoginPage";
 import InstitutionPage from "../pages/InstitutionPage";
 import HospitalRegisterpage from "../pages/HospitalRegisterPage";
-import Post from "../pages/Post";
 import HospitalLoginPage from "../pages/HospitalLoginPage";
-import Userprofile from "./Userprofile";
-import Logout from "./Logout";
-import Profileupdate from "./Profileupdate";
+import HospitalDashboardPage from "../pages/HospitalDashboardPage";
+import DoctorDetails from "../components/DoctorsDetails";
+import LogoutHospital from "../components/LogoutHospital";
+import AddDoctorForm from "./AddDoctorForm";
+import Notifications from "./Notifications";
 export default function Router() {
   return (
     <BrowserRouter>
@@ -20,12 +21,13 @@ export default function Router() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/hospitalregister" element={<HospitalRegisterpage/>} />
         <Route path="/hospitallogin" element={<HospitalLoginPage/>} />
-        <Route path="/post" element={<Post/>} />
+        <Route path="/addform" element={<AddDoctorForm/>} />
+        <Route path="/hospitaldashboard" element={<HospitalDashboardPage/>} />
+        <Route path="/doctordetails" element={<DoctorDetails/>} />
+        <Route path="/logouthospital" element={<LogoutHospital/>} />
         <Route path="/hospital/:name" element={<InstitutionPage />} />
-        <Route path="/profile" element={<Userprofile/>} />
-        <Route path="/logout" element={<Logout/>} />
-        <Route path="/profileupdate" element={<Profileupdate/>} />
-        
+        <Route path="/notification" element={<Notifications />} />
+
       </Routes>
     </BrowserRouter>
   );

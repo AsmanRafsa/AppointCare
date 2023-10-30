@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import axios from "axios";
 import { StateContext } from "../context/state";
 
@@ -8,8 +8,8 @@ function LogIn() {
   const { isLogIn, setIsLogIn } = useContext(StateContext);
   const navigate = useNavigate();
 
+
   const loginUrl = "http://127.0.0.1:8000/api/user/token/";
-  const userprofileUrl = "http://127.0.0.1:8000/api/user/profile/";
 
   const [show, setShow] = useState();
   const [formData, setFormData] = useState({});
@@ -27,13 +27,25 @@ function LogIn() {
         password: formData.password,
       })
       .then((response) => {
+
         localStorage.setItem("user", JSON.stringify(response.data));
+
+
+        console.log(response);
+        localStorage.setItem("access_token", response.data.access);
+        localStorage.setItem("refresh", response.data.refresh);
+        localStorage.setItem("username", response.data.username);
+        localStorage.setItem("password", response.data.password);
 
         if (response.status === 200) {
           isLogIn.is_loggedIn = true;
-          navigate("/");
+          navigate("/")
         }
       });
+      
+      console.log(isLogIn.is_loggedIn);
+
+
 
     axios.get(userprofileUrl).then((response) => {
       console.log(response.data);
@@ -41,6 +53,7 @@ function LogIn() {
     });
 
     console.log(isLogIn.is_loggedIn);
+
 
     const errors = {};
     (formData.username === undefined || formData.username === "") &&

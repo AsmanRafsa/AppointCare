@@ -31,17 +31,19 @@ function HospitalLogin(){
       axios
         .post(loginUrl, {
          email: formData.email,
-          password: formData.password,
+         password: formData.password,
+         phone_number:formData.phone_number
         })
         .then((response) => {
-          localStorage.setItem("email", response.data.email);
-          localStorage.setItem("name", response.data.name);
+          localStorage.setItem("user", JSON.stringify(response.data));
+          
+
           console.log(response);
   
           if (response.status === 200) {
             isLogin.is_loggedin= true;
   
-             navigate('/post')
+             navigate('/hospitaldashboard')
           }
         });
 
@@ -61,7 +63,7 @@ function HospitalLogin(){
     }
 
     return(
-        <div className="text-xl bg-[url('assets/images/signin.png')] bg-no-repeat bg-cover bg-center    ">
+        <div className="text-xl mt-[15vh] bg-[url('assets/images/signin.png')] bg-no-repeat bg-cover bg-center    ">
       <div className="text-center w-[50%] mx-auto">
         <h1 className="text-5xl font-bold mt-0 pt-36 pb-8">
           Hospital Login Account
