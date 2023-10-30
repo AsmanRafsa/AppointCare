@@ -6,11 +6,11 @@ import { useState } from "react";
 export default function Nav() {
 
 
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  // const toggleMenu = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
   return (
     <div className=" right-0 top-0 bottom-0 left-0 fixed h-[15vh] bg-gray-200 shadow-[0_0_0_0px]">
@@ -21,8 +21,8 @@ export default function Nav() {
           </Link>
         </div>
         <div className="flex justify-end gap-5">
-        {isOpen && (
-          <ul className="flex flex-col gap-20 absolute top-[40px] z-100 right-0">
+        {/* {isOpen && ( */}
+          <ul className="flex flex-row gap-20">
             <Link to="/">
               <li className="text-[#318bd4] hidden md:block font-medium text-[1.3rem]">Home</li>
             </Link>
@@ -40,7 +40,7 @@ export default function Nav() {
               <li className="text-[#318bd4] font-medium hidden md:block text-[1.3rem]">Hospital Dashboard</li>
             </Link>
           </ul>
-        )}
+        {/* )} */}
         </div>
         <div className="flex items-center gap-5">
           <Link to="/booking">
@@ -53,7 +53,7 @@ export default function Nav() {
               Emergency Booking
             </button>
           </Link>
-          <FaBars onClick={toggleMenu} size={25} className="block md:hidden  relative" />
+          <FaBars  size={25} className="block md:hidden  " />
 
         </div>
       </div>

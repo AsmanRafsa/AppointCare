@@ -53,6 +53,12 @@ const SideBar = ({ setSelectedContent }) => {
           <AiOutlineLogout /> LOGOUT
         </button>
       </Link>
+      <Link to="/pay">
+        
+        <button className="bg-[#318bd4] p-3 flex items-center gap-1 mt-[6em] text-white rounded-[5px]">
+          <AiOutlineLogout /> Payment
+        </button>
+      </Link>
     </div>
   );
 };

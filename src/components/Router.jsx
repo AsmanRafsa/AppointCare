@@ -11,6 +11,7 @@ import DoctorDetails from "../components/DoctorsDetails";
 import LogoutHospital from "../components/LogoutHospital";
 import AddDoctorForm from "./AddDoctorForm";
 import Notifications from "./Notifications";
+import PaymentPage from "../pages/PaymentPage";
 export default function Router() {
   return (
     <BrowserRouter>
@@ -27,6 +28,7 @@ export default function Router() {
         <Route path="/logouthospital" element={<LogoutHospital/>} />
         <Route path="/hospital/:name" element={<InstitutionPage />} />
         <Route path="/notification" element={<Notifications />} />
+        <Route path="/pay" element={<PaymentPage />} />
 
       </Routes>
     </BrowserRouter>

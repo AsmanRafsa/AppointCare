@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import AddDoctorForm from "./AddDoctorForm";
 import { StateContext } from "../context/state";
+import PaymentPage from "../pages/PaymentPage";
 
 const DoctorDetails = () => {
   const { doctors, setDoctors } = useContext(StateContext);
