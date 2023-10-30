@@ -11,20 +11,20 @@ const SideBar = ({ setSelectedContent }) => {
   };
 
   return (
-    <div className="bg-gray-200 h-[70vh] mt-[15vh] shadow-[0_0_5px_lightgray] top-0 overflow-y-auto fixed  w-[20vw] left-0 ">
+    <div className=" h-[70vh] max-md:w-[40vw] mt-[15vh]  top-0  fixed  w-[20vw] left-0 ">
       <div className="flex items-center gap-2">
         <img
           src={avatar}
           className="rounded-full h-[50px] w-[50px]"
           alt="post"
         />
-        <h2 className="text-blue-500 text-3xl font-bold my-3 ">
+        <h2 className="text-blue-500 text-[2rem] max-md:text-[1rem] font-bold my-3 ">
           {JSON.parse(localStorage.getItem("user")).name}
         </h2>
       </div>
-      <ul className="flex flex-col gap-20">
+      <ul className="flex flex-col gap-5">
         <li
-          className="  bg-[#318bd4] flex items-center gap-1 hover:bg-blue-200 p-2 text-white font-medium text-[1.3rem]"
+          className="   flex items-center gap-1 hover:bg-[#318bd4] p-2 hover:text-white  font-medium text-[1.3rem]"
           onClick={() => handleLinkClick("hospitaldetails")}
         >
           <CgDetailsMore/>
@@ -32,7 +32,7 @@ const SideBar = ({ setSelectedContent }) => {
         </li>
 
         <li
-          className="p-2 text-white flex items-center gap-1 bg-[#318bd4] hover:bg-blue-200 font-medium text-[1.3rem]"
+          className="p-2  flex items-center gap-1 hover:bg-[#318bd4] hover:text-white  font-medium text-[1.3rem]"
           onClick={() => handleLinkClick("doctors")}
         >
           <FaUserDoctor />
@@ -40,7 +40,7 @@ const SideBar = ({ setSelectedContent }) => {
         </li>
 
         <li
-          className="p-2 text-white flex items-center gap-1  bg-[#318bd4] hover:bg-blue-200 font-medium text-[1.3rem]"
+          className="p-2 flex items-center gap-1 hover:bg-[#318bd4] hover:text-white font-medium text-[1.3rem]"
           onClick={() => handleLinkClick("notifications")}
         >
           <IoIosNotificationsOutline />
@@ -48,7 +48,7 @@ const SideBar = ({ setSelectedContent }) => {
         </li>
       </ul>
       <Link to="/logouthospital">
-        {" "}
+        
         <button className="bg-[#318bd4] p-3 flex items-center gap-1 mt-[6em] text-white rounded-[5px]">
           <AiOutlineLogout /> LOGOUT
         </button>

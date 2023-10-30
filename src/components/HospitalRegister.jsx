@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { StateContext } from "../context/state";
 import axios from "axios";
-// import {  } from 'react-router-dom'; // Import useHistory
+// import PaymentForm from "../components/PaymentForm";
 
 function HospitalRegister() {
   const navigate = useNavigate(); // Access the history object
@@ -60,7 +60,7 @@ function HospitalRegister() {
         console.log(formData);
       }
     return(
-        <div className="flex text-xl mt-[15vh] bg-[url('assets/images/signin.png')] bg-no-repeat bg-contain bg-center w-[100%] ">
+        <div className="flex text-xl mt-[15vh] md:bg-cover bg-[url('assets/images/signin.png')] bg-no-repeat bg-contain bg-center w-[100%] ">
         <div className="flex flex-col text-center  mx-auto w-[100%] mt-[5em] mb-[7em]">
           <h1 className="text-4xl font-bold my-8 ">Create Hospital Account</h1>
           <form action="" className="flex flex-col  mx-auto">
@@ -152,6 +152,7 @@ function HospitalRegister() {
           </p>
         </div>
         {/* <div className="bg-[url('assets/images/signup.png')] bg-no-repeat bg-left bg-cover flex-1"></div> */}
+        {/* <PaymentForm/> */}
       </div>
     )
     

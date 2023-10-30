@@ -107,6 +107,20 @@ const AddDoctorForm = () => {
             <option>neurologist</option>
             <option>pediatric</option>
             <option>dentistry</option>
+            <option>surgery</option>
+            <option>pharmacy</option>
+            <option>ct-scan</option>
+            <option>ultrasound</option>
+            <option>physiotherapy</option>
+            <option>orthopaedics</option>
+            <option>antenatal&postanalservices</option>
+            <option>counselling</option>
+            <option>babywellclinics</option>
+            <option>tBclinics</option>
+            <option>laboratoryservices</option>
+            <option>curativeservices</option>
+            <option>occupationalsevices</option>
+            <option>maternity in-patient services with a word</option>
           </select>
         </div>
         <button

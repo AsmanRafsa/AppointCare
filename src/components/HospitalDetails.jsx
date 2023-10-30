@@ -67,13 +67,13 @@ function HospitalDetails() {
         <div className=" w-[100%] bg-white ">
           <h2 className="text-3xl ">Hospital's Dashboard</h2>
 
-          <p className="outline-none border-2 m-3">
+          <p className="outline-none border-2 text-blue-600 text-2xl p-2 m-3">
             Name:{JSON.parse(localStorage.getItem("user")).name}
           </p>
-          <p className="outline-none border-2 m-3">
+          <p className="outline-none text-2xl p-2 border-2 m-3">
             Email:{JSON.parse(localStorage.getItem("user")).email}
           </p>
-          <p className="outline-none border-2 m-3">
+          <p className="outline-none text-2xl p-2 border-2 m-3">
             PhoneNumber:{JSON.parse(localStorage.getItem("user")).phone_number}
           </p>
 
@@ -89,7 +89,7 @@ function HospitalDetails() {
               type="text"
               name="hospital_Slogan"
               placeholder="slogan"
-              className="outline-none  border-2 m-3"
+              className="outline-none text-2xl p-2 border-2 m-3"
             />
             <input
               type="file"
@@ -102,7 +102,7 @@ function HospitalDetails() {
                 })
               }
              
-              className="outline-none border-2 m-3"
+              className="outline-none text-2xl p-2 border-2 m-3"
             />
             <input
               type="text"
@@ -121,8 +121,8 @@ function HospitalDetails() {
               type="text"
               name="hospital_Description"
               placeholder="Description"
-              className="outline-none border-2 m-3"
-              rows="7"
+              className="outline-none text-2xl p-2 border-2 m-3"
+              rows="3"
               value={details.hospital_Description}
               onChange={(e) =>
                 setAddHospital({

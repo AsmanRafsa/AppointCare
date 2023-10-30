@@ -23,7 +23,7 @@ export default function LogoutHospital() {
   }
 
   function handleCancel() {
-    navigate("/");
+    navigate("/hospitaldashboard");
   }
 
 
