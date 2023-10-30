@@ -1,16 +1,14 @@
 import { useContext, useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { Link,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { StateContext } from "../context/state";
 
 function LogIn() {
-  const { isLogIn, setIsLogIn } = useContext(StateContext);
+  const { isLogin, setIsLogIn } = useContext(StateContext);
   const navigate = useNavigate();
-
-
   const loginUrl = "http://127.0.0.1:8000/api/user/token/";
-
+  const userprofileUrl = "http://127.0.0.1:8000/api/user/profile/";
   const [show, setShow] = useState();
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState({});
@@ -18,6 +16,7 @@ function LogIn() {
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
+
   function handleLogin(e) {
     e.preventDefault();
 
@@ -27,33 +26,23 @@ function LogIn() {
         password: formData.password,
       })
       .then((response) => {
-
         localStorage.setItem("user", JSON.stringify(response.data));
 
-
         console.log(response);
-        localStorage.setItem("access_token", response.data.access);
-        localStorage.setItem("refresh", response.data.refresh);
-        localStorage.setItem("username", response.data.username);
-        localStorage.setItem("password", response.data.password);
 
         if (response.status === 200) {
-          isLogIn.is_loggedIn = true;
-          navigate("/")
+          isLogin.is_loggedIn = true;
+          axios.get(userprofileUrl).then((response) => {
+            console.log(response.data);
+            localStorage.setItem("userprofile", JSON.stringify(response.data));
+          });
+          navigate("/");
         }
       });
-      
-      console.log(isLogIn.is_loggedIn);
 
+    // console.log(isLogin.is_loggedIn);
 
-
-    axios.get(userprofileUrl).then((response) => {
-      console.log(response.data);
-      localStorage.setItem("userprofile", JSON.stringify(response.data));
-    });
-
-    console.log(isLogIn.is_loggedIn);
-
+    console.log(isLogin.is_loggedIn);
 
     const errors = {};
     (formData.username === undefined || formData.username === "") &&
