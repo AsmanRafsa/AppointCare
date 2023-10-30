@@ -27,11 +27,16 @@ function LogIn() {
         password: formData.password,
       })
       .then((response) => {
+
+        localStorage.setItem("user", JSON.stringify(response.data));
+
+
         console.log(response);
         localStorage.setItem("access_token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
         localStorage.setItem("username", response.data.username);
         localStorage.setItem("password", response.data.password);
+
         if (response.status === 200) {
           isLogIn.is_loggedIn = true;
           navigate("/")
@@ -40,6 +45,14 @@ function LogIn() {
       
       console.log(isLogIn.is_loggedIn);
 
+
+
+    axios.get(userprofileUrl).then((response) => {
+      console.log(response.data);
+      localStorage.setItem("userprofile", JSON.stringify(response.data));
+    });
+
+    console.log(isLogIn.is_loggedIn);
 
 
     const errors = {};
