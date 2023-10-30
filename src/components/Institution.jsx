@@ -4,19 +4,19 @@ import { StateContext } from "../context/state";
 import { useParams } from "react-router-dom";
 
 export default function Institution() {
-  const [formData, setFormData] = useState({});
   const [hospitals, setHospitals] = useState([]);
   const [users, setUsers] = useState([]);
   const { isLogIn, setIsLogIn } = useContext(StateContext);
   const [booking, setBooking] = useState([]);
   const [loading, setLoading] = useState(true);
   const [formErrors, setFormErrors] = useState({});
+  const id = JSON.parse(localStorage.getItem("userprofile"));
   const [bookingData, setBookingdata] = useState({
-    user: JSON.parse.localStorage.getItem("user").id,
-    patientDisease: "",
-    appointmentType: "",
+    user: id.user,
     patientAge: "",
+    patientDisease: "",
     timeBooked: "",
+    // hospital: "",
   });
 
   const [error, setError] = useState(null);
@@ -25,37 +25,12 @@ export default function Institution() {
   const userprofileUrl = "http://127.0.0.1:8000/api/user/profile/";
   const imageUrl = "http://127.0.0.1:8000/api";
   function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setBookingdata({ ...setBookingdata, [e.target.name]: e.target.value });
   }
 
-  function handleBooking(e) {
-    e.preventDefault();
-    setBooking(prev=>[...prev,bookingData])
-    const newFormData=new formData;
-    newFormData.append("user",bookingData.user)
-    newFormData.append("patientDisease",bookingData.patientDisease)
-    newFormData.append("appointmentType",bookingData.appointmentType)
-    newFormData.append("patientAge",bookingData.patientAge)
-    newFormData.append("timeBooked",bookingData.timeBooked)
-
-
-    axios.put(bookingUrl,newFormData).then((response) => {
-      console.log(response);
-    });
-
-    // console.log(isLogin.is_loggedIn);
-
-    const errors = {};
-    (formData.patientAge === undefined || formData.patientAge === "") &&
-      (errors.patientAge = "Please enter your age");
-    (formData.patientDisease === undefined || formData.patientDisease === "") &&
-      (errors.patientDisease = "Please enter you problem");
-    (formData.timeBooked === undefined || formData.timeBooked === "") &&
-      (errors.timeBooked = "Please enter the time you want to book");
-
-    setFormErrors(errors);
-    console.log(errors);
-    console.log(formData);
+  if (isLogIn.is_loggedIn) {
+    isLogIn.username = localStorage.getItem("username");
+    isLogIn.email = localStorage.getItem("email");
   }
 
   useEffect(() => {
@@ -76,15 +51,31 @@ export default function Institution() {
     });
   }, []);
 
-  if (isLogIn.is_loggedIn) {
-    isLogIn.username = localStorage.getItem("username");
-    isLogIn.email = localStorage.getItem("email");
-  }
+  function handleBooking(e) {
+    e.preventDefault();
+    console.log(bookingData);
+    axios.post(bookingUrl,{
+      user:"",
+      patientAge:"",
+      patientDisease:bookingData.patientDisease,
+    }).then((response)=>{
+      console.log(response).data;
+    })
 
+    // const errors = {};
+    // (formData.patientAge === undefined || formData.patientAge === "") &&
+    //   (errors.patientAge = "Please enter your age");
+    // (formData.patientDisease === undefined || formData.patientDisease === "") &&
+    //   (errors.patientDisease = "Please enter you problem");
+    // (formData.timeBooked === undefined || formData.timeBooked === "") &&
+    //   (errors.timeBooked = "Please enter the time you want to book");
+
+    // setFormErrors(errors);
+    // console.log(errors);
+    // console.log(formData);
+  }
   return (
     <div className="">
-      {/* {console.log(hospitals)} */}
-
       {hospitals.map((hospital) => {
         return (
           <div className=" bg-[url('assets/images/bg.jpeg')] bg-no-repeat bg-cover py-[5em]">
@@ -119,36 +110,6 @@ export default function Institution() {
                 <h1 className="text-center text-5xl my-6">BOOK NOW</h1>
                 <form action="" className="text-xl flex flex-col ">
                   <div className="flex flex-col flex-1 items-center gap-6">
-                    <div className="border-2 border-grey rounded-full p-3 text-xl w-[90%] outline-blue-400 bg-blue-200 flex">
-                      <p>Name:</p>
-                      <input
-                        name="name"
-                        type="text"
-                        min={10}
-                        max={100}
-                        onChange={(e) =>
-                          setBookingdata({ ...bookingData, user: e.target.value })
-                        }
-                        className="bg-blue-200 outline-none "
-                      />
-                    </div>
-                    <div className="border-2 border-grey rounded-full p-3 text-xl w-[90%] outline-blue-400 bg-blue-200 flex ">
-                      <p className="w-[15.5vw]">Phone Number:</p>
-                      <input
-                        name="name"
-                        type="text"
-                        min={10}
-                        max={100}
-                        onChange={(e) =>
-                          setBookingdata({ ...bookingData, patientAge: e.target.value })
-                        }
-                        className="bg-blue-200 outline-none "
-                      />
-                    </div>
-                    {/* {formErrors.age && (
-                              <p className="text-red-500">{formErrors.age}</p>
-                            )} */}
-
                     <div className="w-[90%] ml-[1em] flex items-center gap-4 border-2 border-blue-400 rounded-full p-3 bg-white">
                       <p>Age:</p>{" "}
                       <input
@@ -156,26 +117,10 @@ export default function Institution() {
                         type="number"
                         min={10}
                         max={100}
-                        onChange={(e) =>
-                          setBookingdata({ ...bookingData, patientAge: e.target.value })
-                        }
+                        onChange={(e) => handleChange(e)}
                         className="bg-white outline-none "
                       />
                     </div>
-                    <select
-                      name="appointmentType"
-                      id=""
-                      className="w-[90%] rounded-full p-3 outline-gray-200 bg-white border-2 border-blue-400"
-                      onChange={(e) => handleChange(e)}
-                    >
-                      <option value="">Appointment Type</option>
-                      <option value="Virtual Appointment">
-                        virtual appointment
-                      </option>
-                      <option value="Physical Appointment">
-                        physical appointment
-                      </option>
-                    </select>
 
                     <select
                       name="patientDisease"
