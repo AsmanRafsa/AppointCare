@@ -22,7 +22,7 @@ export default function Nav() {
         </div>
         <div className="flex justify-end gap-5">
         {/* {isOpen && ( */}
-          <ul className="flex flex-row gap-20">
+          <ul className="flex flex-col gap-20 absolute top-[40px] z-100 right-0">
             <Link to="/">
               <li className="text-[#318bd4] hidden md:block font-medium text-[1.3rem]">Home</li>
             </Link>
@@ -55,8 +55,10 @@ export default function Nav() {
           </Link>
           <FaBars  size={25} className="block md:hidden  " />
 
+          {/* <FaBars onClick={toggleMenu} size={25} className="block md:hidden  relative" /> */}
+
         </div>
       </div>
-    </div>
-  );
+    </div>)
+  
 }

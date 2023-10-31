@@ -12,6 +12,7 @@ import LogoutHospital from "../components/LogoutHospital";
 import AddDoctorForm from "./AddDoctorForm";
 import Notifications from "./Notifications";
 import PaymentPage from "../pages/PaymentPage";
+import Logout from "./Logout";
 export default function Router() {
   return (
     <BrowserRouter>
@@ -26,10 +27,10 @@ export default function Router() {
         <Route path="/hospitaldashboard" element={<HospitalDashboardPage/>} />
         <Route path="/doctordetails" element={<DoctorDetails/>} />
         <Route path="/logouthospital" element={<LogoutHospital/>} />
-        <Route path="/hospital/:name" element={<InstitutionPage />} />
+        <Route path="/hospital/:id" element={<InstitutionPage />} />
         <Route path="/notification" element={<Notifications />} />
         <Route path="/pay" element={<PaymentPage />} />
-
+        <Route path="/logout" element={<Logout />} />
       </Routes>
     </BrowserRouter>
   );
