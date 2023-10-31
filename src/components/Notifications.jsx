@@ -5,7 +5,7 @@ import axios from 'axios';
 function Notification() {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   const notificationUrl = "http://127.0.0.1:8000/api/hospital-notifications";
   
   useEffect(() => {
@@ -32,17 +32,17 @@ function Notification() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">Hospital Notifications</h1>
+      <h1 className="text-2xl bg-red-700 font-semibold mb-4">Hospital Notifications</h1>
       {loading ? (
         <p>Loading notifications...</p>
       ) : (
-        <ul>
+        <ul className='bg-red-700'>
           {notifications.length === 0 ? (
             <p>No notifications at the moment.</p>
           ) : (
             notifications.map((notification, index) => (
               <li key={index} className="mb-2">
-                <strong>{notification.patient_name}:</strong> {notification.message}
+                <strong>{notification.user}:</strong> {notification.message}
               </li>
             ))
           )}
