@@ -15,6 +15,7 @@ export default function Institution() {
   const [bookingData, setBookingdata] = useState(null);
 
   const hid = useParams();
+  console.log(hid)
 
   const [error, setError] = useState(null);
   // const hospitalId=JSON.parse(localStorage.getItem("user")).id;
@@ -52,16 +53,24 @@ export default function Institution() {
 
   function handleBooking(e) {
     e.preventDefault();
-    const hospitalId = JSON.parse(localStorage.getItem("user")).id;
-    const id = JSON.parse(localStorage.getItem("userprofile"))[0].user;
+    const hospitalId = parseInt(hid.id);
+    const id = JSON.parse(localStorage.getItem("userprofile")).user;
+    console.log(id)
 
     const dataUpdate = {...bookingData, hospital:hospitalId, user:id}
-    console.log(id);
-    axios.put(bookingUrl, dataUpdate).then((response) => {
+    console.log(dataUpdate)
+    axios.post(bookingUrl, dataUpdate).then((response) => {
       console.log(response);
+      // if (response.status === 200) {
+      //   return(
+      //     <div className="shadow shadow-gray-500 w-[10vw] h-[10vw]">
+      //       <p>Booking Done Successfully</p>
+      //     </div>
+      //   )
+      // }
     });
 
-    console.log(bookingData);
+    // console.log(bookingData);
 
     // const errors = {};
     // (formData.patientAge === undefined || formData.patientAge === "") &&
@@ -74,6 +83,12 @@ export default function Institution() {
     // setFormErrors(errors);
     // console.log(errors);
     // console.log(formData);
+
+
+   
+
+
+
   }
   return (
     // <div className="">

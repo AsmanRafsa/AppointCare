@@ -40,7 +40,7 @@ function Booking() {
 
   return (
     <div className="text-xl mt-[15vh]">
-      {console.log(hospitals)}
+      {/* {console.log(hospitals)} */}
       <Nav />
       <div className="border-2 flex border-blue-400 rounded-full p-6 container my-8 mx-auto">
         <BiSearch size={40} />
@@ -56,7 +56,7 @@ function Booking() {
         {hospitals.map((hospital) => {
           return (
             <div className=" flex bg-blue-100  flex-col  w-[30%] items-center rounded-lg">
-              {/* {console.log(searchTerm)} */}
+              {console.log(searchTerm)}
               <img
                 src={`${imageUrl}${hospital.hospital_Image}`}
                 alt=""
