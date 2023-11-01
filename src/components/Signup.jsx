@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 function SignUp() {
   const navigate = useNavigate();
 
-  const { isLogIn, setIsLogIn } = useContext(StateContext);
+  const { isLogin, setIsLogin } = useContext(StateContext);
   const [formData, setFormData] = useState({});
   const [show, setShow] = useState(false);
   const [formErrors, setFormErrors] = useState({});
@@ -32,7 +32,7 @@ function SignUp() {
       .then((response) => {
         console.log(response);
         navigate("/login");
-        setIsLogIn({
+        setIsLogin({
           isLogIn: true,
           username: localStorage.getItem("username"),
           email: localStorage.getItem("email"),

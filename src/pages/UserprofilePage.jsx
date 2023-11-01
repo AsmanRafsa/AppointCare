@@ -2,7 +2,7 @@ import Footer from "../components/Footer";
 import Userprofile from "../components/Userprofile";
 import Nav from "../components/Nav";
 
-function HospitalRegisterPage() {
+function UserprofilePage() {
     return(
         <div>
             <Nav/>
@@ -11,4 +11,4 @@ function HospitalRegisterPage() {
         </div>
     )
 }
-export default HospitalRegisterPage
+export default UserprofilePage

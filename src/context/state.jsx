@@ -6,9 +6,6 @@ export default function StateProvider({ children }) {
   const [currentUser, setCurrentUser] = useState([]);
   const [isLogin, setIsLogin] = useState({
     is_loggedin: localStorage.getItem("user") ? true : false,
-    name: "",
-    email: "",
-    phone_number: "",
   });
   const [doctors, setDoctors] = useState([]);
   return (

@@ -13,10 +13,10 @@ import Nav from "./Nav";
 
 export default function Logout() {
   const navigate=useNavigate()
-  const { isLogIn, setIsLogIn } = useContext(StateContext);
+  const { isLogin, setIsLogin } = useContext(StateContext);
   function handleLogout() {
     localStorage.clear();
-    setIsLogIn({
+    setIsLogin({
       is_loggedIn: false,
       username: "",
       email: "",

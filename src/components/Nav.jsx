@@ -20,9 +20,9 @@ export default function Nav() {
             <img src={logo} className="w-[6vw] h-[12vh]" />
           </Link>
         </div>
-        <div className="flex justify-end gap-5">
+        <div className="flex gap-5">
         {/* {isOpen && ( */}
-          <ul className="flex flex-col gap-20 absolute top-[40px] z-100 right-0">
+          <ul className="flex flex-row gap-20 z-100">
             <Link to="/">
               <li className="text-[#318bd4] hidden md:block font-medium text-[1.3rem]">Home</li>
             </Link>

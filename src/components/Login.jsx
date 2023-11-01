@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,11 +12,19 @@ function LogIn() {
   const [show, setShow] = useState();
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState({});
+  const [allProfiles, setAllProfiles] = useState([]);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
+  useEffect(()=>{
+    fetch(userprofileUrl).then((res) =>
+          res.json().then((data) => {
+            setAllProfiles(data);
+          })
+        );
+  },[formData])
   function handleLogin(e) {
     e.preventDefault();
 
@@ -27,22 +35,29 @@ function LogIn() {
       })
       .then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data));
+        const loggedInUserId = JSON.parse(localStorage.getItem("user")).id;
 
-        console.log(response);
+        // console.log(response);
+        
+        console.log(allProfiles);
+        allProfiles.forEach((element) => {
+          if (Object.values(element).includes(loggedInUserId)) {
+            console.log(element);
+            console.log("user has profile")
+            localStorage.setItem("userprofile", JSON.stringify(element))
+            navigate("/");
+          } else {
+            console.log("no profile")
+            navigate("/profileupdate");
+          }
+        });
 
         if (response.status === 200) {
           isLogin.is_loggedIn = true;
-          axios.get(userprofileUrl).then((response) => {
-            console.log(response.data);
-            localStorage.setItem("userprofile", JSON.stringify(response.data));
-          });
-          navigate("/");
         }
       });
 
     // console.log(isLogin.is_loggedIn);
-
-    console.log(isLogin.is_loggedIn);
 
     const errors = {};
     (formData.username === undefined || formData.username === "") &&
@@ -52,7 +67,7 @@ function LogIn() {
 
     setFormErrors(errors);
     console.log(errors);
-    console.log(formData);
+    // console.log(formData);
   }
 
   return (
