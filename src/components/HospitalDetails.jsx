@@ -11,14 +11,15 @@ function HospitalDetails() {
   const [details, setDetails] = useState([]);
   //   const [myHospital, setMyHospital] = useState([]);
   const [error, setError] = useState(null);
-  const hospitalId = JSON.parse(localStorage.getItem("user")).id;
+  const hospitalId = JSON.parse(localStorage.getItem("hospital")).id;
   const hospitalDetailsUrl = "http://127.0.0.1:8000/api/hospitaldetails/";
-  const getHospitalDetailsUrl = `http://127.0.0.1:8000/api/hospitaldetails/${hospitalId}`;
-  console.log(getHospitalDetailsUrl);
+  const getHospitalDetailsUrl = `http://127.0.0.1:8000/api/hospitaldetails/`;
+  // const getHospitalDetailsUrl = `http://127.0.0.1:8000/api/hospitaldetails/${hospitalId}`;
+  // console.log(getHospitalDetailsUrl);
 
   const [formData, setFormData] = useState([]);
   const [addHospital, setAddHospital] = useState({
-    hospital: JSON.parse(localStorage.getItem("user")).id,
+    hospital: JSON.parse(localStorage.getItem("hospital")).id,
     hospital_Slogan: "",
     hospital_Location: "",
     hospital_Description: "",
@@ -28,7 +29,15 @@ function HospitalDetails() {
   useEffect(() => {
     fetch(getHospitalDetailsUrl).then((res) =>
       res.json().then((data) => {
-        setDetails(data)
+        console.log(data);
+
+        data.forEach(element => {
+          if(element.hospital===hospitalId){
+            // console.log(element)
+            setDetails(element)
+          }
+        });
+        // setDetails(data)
       })
     );
   }, []);
@@ -61,23 +70,37 @@ function HospitalDetails() {
   }
 
   return (
-    <div className=" mt-[15vh] p-4">
+    <div className=" mt-[15vh] p-4 overflow-y-auto h-[600px] ">
       <div className="flex items-center bg-gray-200 w-[100%] gap-[5em] ">
        
         <div className=" w-[100%] bg-white ">
-          <h2 className="text-3xl ">Hospital's Dashboard</h2>
+          <h2 className="text-3xl ">Hospital's Details</h2>
 
-          <p className="outline-none border-2 text-blue-600 text-2xl p-2 m-3">
-            Name:{JSON.parse(localStorage.getItem("user")).name}
-          </p>
-          <p className="outline-none text-2xl p-2 border-2 m-3">
-            Email:{JSON.parse(localStorage.getItem("user")).email}
-          </p>
-          <p className="outline-none text-2xl p-2 border-2 m-3">
-            PhoneNumber:{JSON.parse(localStorage.getItem("user")).phone_number}
-          </p>
 
           <div className="flex flex-col">
+            
+            <p className="my-2 text-blue-600">Hospital Name:</p>
+          <input
+              
+              value={JSON.parse(localStorage.getItem("hospital")).name}
+              type="text"
+              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+            />
+            <p className="my-2 text-blue-600">Email Address:</p>
+            <input
+              
+              value={JSON.parse(localStorage.getItem("hospital")).email}
+              type="text"
+              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+            />
+            <p className="my-2 text-blue-600">Phone Number:</p>
+            <input
+              
+              value={JSON.parse(localStorage.getItem("hospital")).phone_number}
+              type="text"
+              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+            />
+            <p className="my-2 text-blue-600">Hospital Slogan:</p>
             <input
               onChange={(e) =>
                 setAddHospital({
@@ -89,8 +112,9 @@ function HospitalDetails() {
               type="text"
               name="hospital_Slogan"
               placeholder="slogan"
-              className="outline-none text-2xl p-2 border-2 m-3"
+              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
             />
+            <p className="my-2 text-blue-600">Upload Image:</p>
             <input
               type="file"
               name="hospital_Image"
@@ -102,13 +126,14 @@ function HospitalDetails() {
                 })
               }
              
-              className="outline-none text-2xl p-2 border-2 m-3"
+              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
             />
+            <p className="my-2 text-blue-600">Location:</p>
             <input
               type="text"
               name="hospital_Location"
               placeholder="location"
-              className="outline-none p-2 border-2 m-3"
+              className="outline-none p-2 shadow-[0_0_4px_lightgray]"
               onChange={(e) =>
                 setAddHospital({
                   ...addHospital,
@@ -117,11 +142,12 @@ function HospitalDetails() {
               }
               value={details.hospital_Location}
             />
+            <p className="my-2 text-blue-600">Brief HOspital Description:</p>
             <textarea
               type="text"
               name="hospital_Description"
               placeholder="Description"
-              className="outline-none text-2xl p-2 border-2 m-3"
+              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
               rows="3"
               value={details.hospital_Description}
               onChange={(e) =>

@@ -4,55 +4,66 @@ import { Link, useNavigate } from "react-router-dom";
 import { StateContext } from "../context/state";
 import axios from "axios";
 
-function HospitalLogin() {
+function HospitalLogin(){
   const navigate = useNavigate(); // Access the history object
+
+
 
   const { isLogin, setIsLogin } = useContext(StateContext);
 
-  const [show, setShow] = useState();
-  const [formData, setFormData] = useState([]);
-  const [formErrors, setFormErrors] = useState({});
-
-  const loginUrl = "http://127.0.0.1:8000/api/hospital/login";
-
-  function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
-  function handleLogin(e) {
-    e.preventDefault(e);
-    console.log(formData);
-
-    axios
-      .post(loginUrl, {
-        email: formData.email,
-        password: formData.password,
-        phone_number: formData.phone_number,
-      })
-      .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response.data));
+    const [show, setShow] = useState();
+    const [formData, setFormData] = useState([]);
+    const [formErrors, setFormErrors] = useState({});
+  
+    const loginUrl = "http://127.0.0.1:8000/api/hospital/login";
 
 
-        if (response.status === 200) {
-          isLogin.is_loggedin = true;
 
-          navigate("/hospitaldashboard");
-        }
-      });
 
-    e.preventDefault();
-    const errors = {};
-    (formData.email === undefined || formData.email === "") &&
-      (errors.email = "Please enter your Email");
-    (formData.password === undefined || formData.password === "") &&
-      (errors.password = "Please enter your Password");
+    function handleChange(e) {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+    function handleLogin(e) {
 
-    setFormErrors(errors);
-    console.log(errors);
-    console.log(formData);
-  }
+      e.preventDefault(e);
+      console.log(formData);
+  
+      axios
+        .post(loginUrl, {
+         email: formData.email,
+         password: formData.password,
+         phone_number:formData.phone_number
+        })
+        .then((response) => {
+          localStorage.setItem("hospital", JSON.stringify(response.data));
+          
 
-  return (
-    <div className="text-xl mt-[15vh] bg-[url('assets/images/signin.png')] bg-repeat bg-cover bg-center h-[100vh]   ">
+          console.log(response);
+  
+          if (response.status === 200) {
+            isLogin.is_loggedin= true;
+  
+             navigate('/hospitaldashboard')
+          }
+        });
+
+
+
+      
+      e.preventDefault();
+      const errors = {};
+      (formData.email === undefined || formData.email === "") &&
+        (errors.email = "Please enter your Email");
+      (formData.password === undefined || formData.password === "") &&
+        (errors.password = "Please enter your Password");
+  
+      setFormErrors(errors);
+      console.log(errors);
+      console.log(formData);
+    }
+
+    return(
+        <div className="text-xl mt-[15vh] bg-[url('assets/images/signin.png')] bg-repeat bg-cover bg-center h-[100vh]   ">
       <div className="text-center w-[50%] mx-auto">
         <h1 className="text-5xl font-bold mt-0 pt-36 pb-8">
           Hospital Login Account
@@ -112,6 +123,6 @@ function HospitalLogin() {
         </p>
       </div>
     </div>
-  );
+    )
 }
-export default HospitalLogin;
+export default HospitalLogin

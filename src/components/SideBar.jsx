@@ -19,7 +19,7 @@ const SideBar = ({ setSelectedContent }) => {
           alt="post"
         />
         <h2 className="text-blue-500 text-[2rem] max-md:text-[1rem] font-bold my-3 ">
-          {JSON.parse(localStorage.getItem("user")).name}
+          {JSON.parse(localStorage.getItem("hospital")).name}
         </h2>
       </div>
       <ul className="flex flex-col gap-5">
@@ -51,6 +51,12 @@ const SideBar = ({ setSelectedContent }) => {
         
         <button className="bg-[#318bd4] p-3 flex items-center gap-1 mt-[6em] text-white rounded-[5px]">
           <AiOutlineLogout /> LOGOUT
+        </button>
+      </Link>
+      <Link to="/pay">
+        
+        <button className="bg-[#318bd4] p-3 flex items-center gap-1 mt-[6em] text-white rounded-[5px]">
+          <AiOutlineLogout /> Payment
         </button>
       </Link>
     </div>

@@ -40,7 +40,7 @@ export default function Nav() {
               <li className="text-[#318bd4] font-medium hidden md:block text-[1.3rem]">Hospital Dashboard</li>
             </Link>
           </ul>
-        {/* // )} */}
+        {/* )} */}
         </div>
         <div className="flex items-center gap-5">
           <Link to="/booking">
@@ -53,10 +53,12 @@ export default function Nav() {
               Emergency Booking
             </button>
           </Link>
+          <FaBars  size={25} className="block md:hidden  " />
+
           {/* <FaBars onClick={toggleMenu} size={25} className="block md:hidden  relative" /> */}
 
         </div>
       </div>
-    </div>
-  );
+    </div>)
+  
 }
