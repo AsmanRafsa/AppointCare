@@ -25,14 +25,7 @@ export default function Userprofile() {
 
   return (
     <>
-      {user.map((Userprofile) => {
-        <div>
-          <h1>User Profile</h1>
-          <img src={`${imageUrl}${Userprofile.profilePic}`} alt="Profile" />
-          <p>Name: {Userprofile.related_data.first_name}  {Userprofile.related_data.last_name}</p>
-          <p>Phone Number: {Userprofile.phoneNumber}</p>
-        </div>;
-      })}
+     
     </>
   );
 }
