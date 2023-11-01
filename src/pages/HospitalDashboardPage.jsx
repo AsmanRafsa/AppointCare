@@ -33,4 +33,4 @@ function HospitalDashboardPage() {
         </div>
     )
 }
-export default HospitalDashboardPage
+export default HospitalDashboardPage;

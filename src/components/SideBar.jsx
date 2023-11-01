@@ -19,7 +19,7 @@ const SideBar = ({ setSelectedContent }) => {
           alt="post"
         />
         <h2 className="text-blue-500 text-[2rem] max-md:text-[1rem] font-bold my-3 ">
-          {JSON.parse(localStorage.getItem("user")).name}
+          {JSON.parse(localStorage.getItem("hospital")).name}
         </h2>
       </div>
       <ul className="flex flex-col gap-5">

@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import saf from "../assets/images/safaricom.png";
+import { encode } from 'base-64';
+
 const PaymentForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [amount, setAmount] = useState("");
@@ -9,15 +11,20 @@ const handlePayment = async (phoneNumber, amount) => {
   // Replace with your actual Consumer Key and Consumer Secret
   const consumerKey = '5b5X6R3pWOud6JXhCeMjfojollkuAAFw';
   const consumerSecret = 'Gk4ei0JZVKzOBP7r';
+  // const base64 = require('base-64');
 
   // Base64 encode the consumer key and secret
-  const base64Credentials = Buffer.from(`${consumerKey}:${consumerSecret}`).toString('base64');
+  // const base64Credentials = Buffer.from(`${consumerKey}:${consumerSecret}`).toString('base64');
+  // const base64Credentials = btoa(`${consumerKey}:${consumerSecret}`);
+  // const base64Credentials = base64.encode(`${consumerKey}:${consumerSecret}`);
+  const base64Credentials = encode(`${consumerKey}:${consumerSecret}`);
+
 
   // Request an access token from Safaricom's OAuth API
   const oauthUrl = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
   
   try {
-    const oauthResponse = await axios.post(oauthUrl, null, {
+    const oauthResponse = await axios.get(oauthUrl, null, {
       headers: {
         'Authorization': `Basic ${base64Credentials}`
       }
@@ -26,22 +33,21 @@ const handlePayment = async (phoneNumber, amount) => {
     const accessToken = oauthResponse.data.access_token;
 
     // Now that you have the access token, you can initiate the payment
-    const paymentUrl = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
+    const paymentUrl = '';
 
-    const payload = {
+    const payload =  {
       "BusinessShortCode": 174379,
-      "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjMxMDMwMTUyNTAw",
-      "Timestamp": "20231030152500",
+      "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjMxMDMxMTUwMTEw",
+      "Timestamp": "20231031150110",
       "TransactionType": "CustomerPayBillOnline",
       "Amount": 100,
-      "PartyA": 254708374149,
+      "PartyA": 254740550356,
       "PartyB": 174379,
       "PhoneNumber": 254740550356,
       "CallBackURL": "https://mydomain.com/path",
-      "AccountReference": "CompanyXLTD",
-      "TransactionDesc": "Payment of X" 
+      "AccountReference": "AppointCare",
+      "TransactionDesc": "consultation Payment of X" 
     }
-
     try {
       const paymentResponse = await axios.post(paymentUrl, payload, {
         headers: {
@@ -57,7 +63,9 @@ const handlePayment = async (phoneNumber, amount) => {
       // Handle payment error
     }
   } catch (oauthError) {
-    console.error('OAuth Error:', oauthError);
+  oauthError = "Your error message goes here"; // Replace this with your actual error message
+
+    console.log( oauthError);
     // Handle OAuth error
   }
 };

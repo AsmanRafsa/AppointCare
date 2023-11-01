@@ -35,7 +35,7 @@ function HospitalLogin(){
          phone_number:formData.phone_number
         })
         .then((response) => {
-          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem("hospital", JSON.stringify(response.data));
           
 
           console.log(response);

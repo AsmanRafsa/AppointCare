@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-
-function Notification() {
+function Notifications() {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const hospitalId = JSON.parse(localStorage.getItem("user")).id;
   const notificationUrl = "http://127.0.0.1:8000/api/hospital-notifications";
-  
+
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
@@ -15,41 +14,53 @@ function Notification() {
         setNotifications(response.data);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching notifications:', error);
+        console.error("Error fetching notifications:", error);
         setLoading(false);
       }
     };
-
-    // Fetch notifications when the component mounts
     fetchNotifications();
-
-    // Poll for new notifications every 1 minute
     const interval = setInterval(fetchNotifications, 60000);
-
-    // Clean up the interval when the component unmounts
     return () => clearInterval(interval);
   }, []);
 
+
+const ReceivedNotification=(e)=>{
+  e.preventDefault()
+  axios
+      .get(notificationUrl)
+      .then((response) => {
+        console.log("Received Notifications:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching notifications:", error);
+      });
+}
+
+
   return (
-    <div className="p-6">
-      <h1 className="text-2xl bg-red-700 font-semibold mb-4">Hospital Notifications</h1>
-      {loading ? (
-        <p>Loading notifications...</p>
-      ) : (
-        <ul className='bg-red-700'>
-          {notifications.length === 0 ? (
-            <p>No notifications at the moment.</p>
-          ) : (
-            notifications.map((notification, index) => (
-              <li key={index} className="mb-2">
-                <strong>{notification.user}:</strong> {notification.message}
-              </li>
-            ))
-          )}
-        </ul>
-      )}
+    <div className=" p-4 rounded-lg mt-[15vh]">
+      <h1 className="text-2xl  font-semibold mb-4">Hospital Notifications</h1>
+
+      <div className="bg-blue-200 border border-blue-600 rounded p-3 my-2">
+        {loading ? (
+          <p>Loading notifications...</p>
+        ) : (
+          <ul className="text-white">
+            {notifications.length === 0 ? (
+              <p>No notifications at the moment.</p>
+            ) : (
+              notifications.map((notification) => (
+                <li  className="mb-2">
+                  <strong>{notification.user}:</strong> {notification.message}
+                </li>
+              ))
+            )}
+          </ul>
+        )}
+        <button onClick={(e)=>ReceivedNotification(e)} className="bg-blue-500 text-white px-4 py-2 rounded">ReceivedNotification</button>
+      </div>
     </div>
   );
 }
 
-export default Notification;
+export default Notifications;
