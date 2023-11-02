@@ -59,19 +59,19 @@ function SignUp() {
     console.log(formData);
   }
   return (
-    <div className="flex text-xl bg-[url('assets/images/signin.png')] bg-no-repeat bg-contain bg-center w-[100%] ">
+    <div className="flex mt-[15vh] bg-[url('assets/images/signin.png')] bg-no-repeat bg-contain bg-center w-[100%] ">
       <div className="flex flex-col text-center  mx-auto w-[100%] mt-[5em] mb-[7em]">
-        <h1 className="text-4xl font-bold my-8 ">Create a New Account</h1>
+        <h1 className="text-4xl font-bold my-8 font-[poppins] ">Create a New Account</h1>
         <form action="" className="flex flex-col  mx-auto">
           <div className="flex gap-10 my-8 mx-auto">
             <div>
               {formErrors.firstName && (
-                <p className="text-red-500">{formErrors.firstName}</p>
+                <p className="text-red-500 font-[raleway]">{formErrors.firstName}</p>
               )}
               <input
                 type="text"
                 placeholder="First Name"
-                className="flex-1 rounded py-4 px-6 border-2 border-gray-300 outline-blue-400"
+                className="flex-1 font-[raleway] rounded py-5 px-6 shadow-[0_0_6px_lightgray] outline-blue-400"
                 name="firstName"
                 onChange={(e) => handleChange(e)}
               />
@@ -83,7 +83,7 @@ function SignUp() {
               <input
                 type="text"
                 placeholder="Last Name"
-                className="flex-1 rounded py-4 px-6 border-2 border-gray-300 outline-blue-400"
+                className="flex-1 font-[raleway] rounded py-5 px-6 shadow-[0_0_6px_lightgray] outline-blue-400"
                 name="lastName"
                 onChange={(e) => handleChange(e)}
               />
@@ -91,12 +91,12 @@ function SignUp() {
           </div>
           <div className="flex flex-col gap-8">
             {formErrors.email && (
-              <p className="text-red-500">{formErrors.email}</p>
+              <p className="text-red-500 font-[raleway]">{formErrors.email}</p>
             )}
             <input
               type="email"
               placeholder="Email Address"
-              className="rounded py-4 px-6 border-2 border-gray-300 outline-blue-400"
+              className="rounded py-5 px-6 font-[raleway] shadow-[0_0_6px_lightgray] outline-blue-400"
               name="email"
               onChange={(e) => handleChange(e)}
             />
@@ -106,18 +106,18 @@ function SignUp() {
             <input
               type="text"
               placeholder="Username"
-              className="rounded py-4 px-6 border-2 border-gray-300 outline-blue-400"
+              className="rounded py-5 font-[raleway] px-6 shadow-[0_0_6px_lightgray] outline-blue-400"
               name="username"
               onChange={(e) => handleChange(e)}
             />
             {formErrors.password && (
-              <p className="text-red-500">{formErrors.password}</p>
+              <p className="text-red-500 font-[raleway]">{formErrors.password}</p>
             )}
-            <div className="rounded py-4 px-6 border-2 border-gray-300 outline-blue-400 flex items-center">
+            <div className="rounded py-5 px-6 font-[raleway] shadow-[0_0_6px_lightgray] outline-blue-400 flex items-center">
               <input
                 type={show ? "text" : "password"}
                 placeholder="Password"
-                className="w-[100%] outline-none"
+                className="w-[100%] font-[raleway] outline-none"
                 name="password"
                 onChange={(e) => handleChange(e)}
               />
@@ -126,51 +126,39 @@ function SignUp() {
               </div>
             </div>
             {formErrors.confirmPassword && (
-              <p className="text-red-500">{formErrors.confirmPassword}</p>
+              <p className="text-red-500 font-[raleway]">{formErrors.confirmPassword}</p>
             )}
-            <div className="rounded py-4 px-6 border-2 border-gray-300 flex items-center">
+            <div className="rounded py-5 px-6 shadow-[0_0_6px_lightgray] flex items-center">
               <input
                 type="password"
                 placeholder="Confirm your password"
-                className="w-[100%] outline-none"
+                className="w-[100%] font-[raleway] outline-none"
                 name="confirmPassword"
                 onChange={(e) => handleChange(e)}
               />
             </div>
           </div>
-          <div className="flex my-8 justify-between">
-            <div className="flex gap-4">
-              <input type="checkbox" className="w-6 h-6" />
-              <p>Remember me</p>
-            </div>
-            <div>
-              <p>Forgot Your Password?</p>
-            </div>
-          </div>
+          
           <button
-            className="bg-[#318bd4] rounded py-6 px-6 text-white text-2xl font-weight"
+            className="bg-[#318bd4] rounded py-5 mt-8 text-white text-2xl font-weight"
             onClick={(e) => handleSignup(e)}
           >
             Sign Up
           </button>
         </form>
-        <p className="my-6">OR</p>
-        <div className="flex items-center gap-8 my-8 justify-center">
-          <div>
-            <img src="" alt="" />
-          </div>
-          <button className="text-3xl text-blue-500 font-bold">
-            Sign In With Google
-          </button>
+        
+        <div className="flex items-center my-8 justify-center">
+          <p className="text-[1.1rem]">
+            Already have an account?{" "}
+            <span>
+              <Link to="/register">
+                <span className="text-blue-400 cursor-pointer font-[raleway]">Sign In</span>
+              </Link>
+            </span>
+          </p>
         </div>
-        <p className="my-6">
-          Already have an account yet?
-          <Link to="/login">
-            <button className="text-blue-400">Sign In</button>
-          </Link>
-        </p>
+        <div className="bg-[url('assets/images/signup.png')] bg-no-repeat bg-left bg-cover flex-1"></div>
       </div>
-      <div className="bg-[url('assets/images/signup.png')] bg-no-repeat bg-left bg-cover flex-1"></div>
     </div>
   );
 }

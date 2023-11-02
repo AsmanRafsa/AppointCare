@@ -31,7 +31,7 @@ export default function Logout() {
       {/* <div className="container mx-auto shadow shadow-gray-500 w-[40vw] h-[30vh] my-[8em] flex flex-col justify-center items-center"> */}
         {/* <h1 className="text-[2rem] font-semibold text-center my-[2em]"> */}
       <div className="container mx-auto shadow shadow-[#318bd4] w-[40vw] h-[40vh] my-[13em] flex flex-col justify-center items-center">
-        <h1 className="text-[3rem] font-semibold text-center my-[1em]">
+        <h1 className="text-[3rem] font-semibold text-center font-[poppins] my-[1em]">
           ARE YOU SURE YOU WANT TO LOG OUT?
         </h1>
         <div className="flex gap-[3em] justify-center items-center mb-[3em]">

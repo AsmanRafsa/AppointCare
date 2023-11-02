@@ -22,13 +22,13 @@ const SideBar = ({ setSelectedContent }) => {
           className="rounded-full h-[50px] w-[50px]"
           alt="post"
         />
-        <h2 className="text-blue-500 text-[2rem] max-md:text-[1rem] font-bold my-3 ">
+        <h2 className="text-blue-500 font-[poppins] text-[2rem] max-md:text-[1rem] font-bold my-3 ">
           {JSON.parse(localStorage.getItem("hospital")).name}
         </h2>
       </div>
       <ul className="flex flex-col gap-5">
         <li
-          className="   flex items-center gap-1 hover:bg-[#318bd4] p-2 hover:text-white  font-medium text-[1.3rem]"
+          className="   flex items-center gap-1 font-[raleway] hover:bg-[#318bd4] p-2 hover:text-white  font-medium text-[1.3rem]"
           onClick={() => handleLinkClick("hospitaldetails")}
         >
           <CgDetailsMore />
@@ -36,7 +36,7 @@ const SideBar = ({ setSelectedContent }) => {
         </li>
 
         <li
-          className="p-2  flex items-center gap-1 hover:bg-[#318bd4] hover:text-white  font-medium text-[1.3rem]"
+          className="p-2  flex items-center gap-1 hover:bg-[#318bd4] font-[raleway] hover:text-white  font-medium text-[1.3rem]"
           onClick={() => handleLinkClick("doctors")}
         >
           <FaUserDoctor />
@@ -44,10 +44,10 @@ const SideBar = ({ setSelectedContent }) => {
         </li>
         {/* <label className="bg-red-500 h-[20px] w-[20px] absolute  rounded-full"></label> */}
         <li
-          className="p-2 flex items-center gap-1 hover:bg-[#318bd4] relative hover:text-white font-medium text-[1.3rem]"
+          className="p-2 flex items-center gap-1 font-[raleway] hover:bg-[#318bd4] relative hover:text-white font-medium text-[1.3rem]"
           onClick={() => handleLinkClick("notifications")}
         >
-          <span className="absolute bg-blue-500 hover:bg-white hover:text-blue-500 left-4 bottom-6 w-[20px] h-[20px] rounded-full text-white font-bold flex justify-center items-center">
+          <span className="absolute bg-blue-500 font-[raleway] hover:bg-white hover:text-blue-500 left-4 bottom-6 w-[20px] h-[20px] rounded-full text-white font-bold flex justify-center items-center">
             {/* {hospitalAppointments.length} */}
             {notifications.length === 0 ? <>0</> : <>{notifications.length}</>}
           </span>
@@ -56,7 +56,7 @@ const SideBar = ({ setSelectedContent }) => {
         </li>
       </ul>
       <Link to="/logouthospital">
-        <button className="bg-[#318bd4] p-3 flex items-center gap-1 mt-[6em] text-white rounded-[5px]">
+        <button className="bg-[#318bd4] p-3 font-[raleway] flex items-center gap-1 mt-[6em] text-white rounded-[5px]">
           <AiOutlineLogout /> LOGOUT
         </button>
       </Link>

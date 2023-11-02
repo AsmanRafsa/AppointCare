@@ -28,7 +28,7 @@ function Notifications() {
 
   return (
     <div className=" p-4 rounded-lg mt-[15vh]">
-      <h1 className="text-2xl  font-semibold mb-4">Hospital Notifications</h1>
+      <h1 className="text-2xl  font-semibold mb-4 font-[poppins]">Hospital Notifications</h1>
 
       <div>
         {/* {loading ? (
@@ -36,7 +36,7 @@ function Notifications() {
         ) : ( */}
         <ul className="text-white">
           {notifications.length === 0 ? (
-            <p>No notifications at the moment.</p>
+            <p className="font-[raleway] shadow-[0_0_5px_lightgray] w-[200p] h-[200px]">No notifications at the moment.</p>
           ) : (
             notifications.map((notification) => {
               const date = new Date(notification.timeBooked);
@@ -50,7 +50,7 @@ function Notifications() {
               const formatted_date = `${day} ${month} at ${time}`;
               return (
                 <div className="mb-2 bg-blue-200 border border-blue-600 rounded p-3 my-2">
-                  <p>
+                  <p >
                     {notification.related_userdata.first_name}{" "}
                     {notification.related_userdata.last_name} has booked an
                     appointment for {notification.patientDisease} services on {formatted_date}
