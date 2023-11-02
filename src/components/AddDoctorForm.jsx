@@ -6,6 +6,7 @@ import { StateContext } from "../context/state";
 const AddDoctorForm = () => {
   const { doctors, setDoctors } = useContext(StateContext);
   const [doctorDetails, setDoctorDetails] = useState([]);
+  const doctorsUrl = "http://127.0.0.1:8000/api/doctors/add/"; // Your API endpoint
 
   const [doctorData, setDoctorData] = useState({
     hospital: JSON.parse(localStorage.getItem("hospital")).id,
@@ -14,10 +15,7 @@ const AddDoctorForm = () => {
     doctorImage: null,
   });
 
-  const doctorsUrl = "http://127.0.0.1:8000/api/doctors/add/"; // Your API endpoint
-  function handleChange(e) {
-    setDoctorData({ ...doctorData, [e.target.name]: e.target.value });
-  }
+  
 
   function handleAdd(e) {
     e.preventDefault(e);
@@ -46,11 +44,11 @@ const AddDoctorForm = () => {
 
   return (
     <div className="    p-7 mx-auto  shadow-[0_0_5px_lightgray]">
-      <h2 className="text-2xl text-center font-bold mb-4">Add A Doctor</h2>
+      <h2 className="text-2xl text-center font-bold mb-4 font-[poppins]">Add A Doctor</h2>
       <form className=" h-[fit-content]">
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-lg font-bold mb-2"
+            className="block font-[raleway] text-gray-700 text-lg font-bold mb-2"
             htmlFor="name"
           >
             Name:
@@ -59,21 +57,22 @@ const AddDoctorForm = () => {
             type="text"
             id="name"
             name="doctorName"
+            placeholder="Full Name"
             onChange={(e) =>
               setDoctorData({ ...doctorData, doctorName: e.target.value })
             }
-            className="border-2  border-gray-300 w-[680px]   rounded-lg py-3 px-3 outline-none"
+            className="shadow-[0_0_5px_lightgray] font-[raleway]  w-[680px]   rounded-lg py-3 px-3 outline-none"
             required
           />
         </div>
         <div className=" ">
           <label
-            className="block text-gray-700 text-lg font-bold mb-2"
+            className="block text-gray-700 text-lg font-[raleway] font-bold mb-2"
             htmlFor="image"
           >
             Image:
           </label>
-          <div className="border-2  border-gray-300 w-[680px] rounded-lg">
+          <div className=" shadow-[0_0_5px_lightgray] font-[raleway] w-[680px] rounded-lg">
             <input
               type="file"
               id="image"
@@ -88,13 +87,13 @@ const AddDoctorForm = () => {
 
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-lg font-bold mb-2"
+            className="block font-[raleway] text-gray-700 text-lg font-bold mb-2"
             htmlFor="speciality"
           >
             Speciality:
           </label>
           <select
-            className="border-2  border-gray-300 w-[680px] rounded-lg py-3 px-3 outline-none"
+            className="shadow-[0_0_5px_lightgray]  font-[raleway]  w-[680px] rounded-lg py-3 px-3 outline-none"
             name="doctorSpeciality"
             onChange={(e) =>
               setDoctorData({ ...doctorData, doctorSpeciality: e.target.value })
@@ -125,7 +124,7 @@ const AddDoctorForm = () => {
         <button
           onClick={handleAdd}
           type="submit"
-          className="bg-blue-600 text-black w-[300px] py-4 px-4 rounded-lg hover:bg-blue-600"
+          className="bg-blue-600 font-[raleway] text-black w-[300px] py-4 px-4 rounded-lg hover:bg-blue-600"
         >
           Add Doctor
         </button>

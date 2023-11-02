@@ -45,7 +45,7 @@ export default function Profileedit() {
       <Nav className="flex flex-1" />
 
       <div className=" w-[] flex justify-center items-center">
-        <h1 className="text-[4rem] font-bold text-blue-400">
+        <h1 className="text-[4rem] font-bold text-blue-400 font-[poppins]">
           Update Your Profile
         </h1>
       </div>
@@ -55,7 +55,7 @@ export default function Profileedit() {
           className="container mx-auto flex flex-col my-[3em] shadow-2xl justify-center items-center h-[100vh]"
         >
           <div className="">
-            <label className="my-[1em] font-medium text-[1.5rem] text-left">
+            <label className="my-[1em] font-[raleway] font-medium text-[1.5rem] text-left">
               First Name:
             </label>
             {/* {formErrors.file && (
@@ -67,11 +67,11 @@ export default function Profileedit() {
               name="firstname"
               id=""
               placeholder="Add An Image Of The Hospital"
-              className="text-left bg-red  p-4  border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400 "
+              className="text-left font-[raleway] bg-red  p-4  border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400 "
             />
           </div>
           <div className="">
-            <label className="my-[1em] font-medium text-[1.5rem] text-left">
+            <label className="my-[1em] font-[raleway] font-medium text-[1.5rem] text-left">
               Last Name:
             </label>
             {/* {formErrors.file && (
@@ -83,11 +83,11 @@ export default function Profileedit() {
               name="lastname"
               id=""
               placeholder="Add An Image Of The Hospital"
-              className="text-left bg-red  p-4  border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400 "
+              className="text-left bg-red font-[raleway] p-4  border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400 "
             />
           </div>
           <div className="">
-            <label className="my-[1em] font-medium text-[1.5rem] text-left">
+            <label className="my-[1em] font-[raleway] font-medium text-[1.5rem] text-left">
               Username:
             </label>
             {/* {formErrors.file && (
@@ -99,7 +99,7 @@ export default function Profileedit() {
               name="username"
               id=""
               placeholder="Add An Image Of The Hospital"
-              className="text-left bg-red  p-4  border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400 "
+              className="text-left bg-red font-[raleway]  p-4  border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400 "
             />
           </div>
           {/* <div className="">
@@ -124,21 +124,21 @@ export default function Profileedit() {
               {/* {formErrors.phoneNumber && (
                 <p className="text-red-500">{formErrors.phoneNumber}</p>
               )} */}
-              <label className="my-[1em] font-medium text-[1.5rem] text-left">
+              <label className="my-[1em] font-[raleway] font-medium text-[1.5rem] text-left">
                 Phone Number:
               </label>
               <input
                 value={user.phoneNumber}
                 type="text"
                 placeholder="Enter You Phone Number"
-                className="text-left bg-red  p-4  border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400"
+                className="text-left bg-red font-[raleway]  p-4  border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400"
               />
             </div>
           </div>
 
           <button
             onClick={(e) => handleProfile(e)}
-            className="bg-[#3ba0f3] p-4 my-[1em] rounded-full text-white shadow font-medium"
+            className="bg-[#3ba0f3] p-4 my-[1em] font-[raleway] rounded-full text-white shadow font-medium"
           >
             Update
           </button>

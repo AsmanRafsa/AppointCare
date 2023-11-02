@@ -1,63 +1,4 @@
-// import React, { useState } from "react";
-
-// export default function RatingAndReviews() {
-//   const [rating, setRating] = useState(0);
-//
-//   const [reviews, setReviews] = useState([]);
-//   const handleRatingChange = (newRating) => {
-//     setRating(newRating);
-//   };
-
-//
-
-//   return (
-//     <div className="">
-//       <p>Rate: {rating}</p>
-//       <div className="flex justify-center items-center gap-2">
-//         {/* <button className="bg-blue-500" onClick={() => setRating(rating + 1)}>
-//           Increase Rating
-//         </button>
-//         <button className="bg-blue-500" onClick={() => setRating(rating - 1)}>
-//           Decrease Rating
-//         </button> */}
-
-//         {[1,2,3,4,5].map((value) => {
-//           return (
-//             <div className="shadow shadow-gray-400 p-[1em]">
-//               <button
-//                 key={value}
-//                 onClick={() => {
-//                   handleRatingChange(value);
-//                 }}
-//                 style={{
-//                   backgroundColor: rating >= value ? "blue" : "gray",
-//                   padding: "1em",
-//                   color: "white",
-//                 }}
-//               >
-//                 {value}
-//               </button>
-//               <p>Selected Rating: {rating}</p>
-
-//               <div>
-//                 <h3>Reviews:</h3>
-//                 <ul>
-//                   {reviews.map((rev, index) => (
-//                     <li key={index}>
-//                       <p>Rating: {rev.rating}</p>
-//                       <p>{rev.text}</p>
-//                     </li>
-//                   ))}
-//                 </ul>
-//               </div>
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// }
-
+import axios from "axios";
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 // import { Container, Radio, Rating } from "../../Ratingstyles";
@@ -70,6 +11,8 @@ export default function RatingAndReviews() {
     setReview(e.target.value);
   };
 
+
+  const RatingAndReviewsUrl="http://127.0.0.1:8000/api/reviews/"
   const handleSubmitReview = () => {
     if (review.trim() !== "") {
       const newReview = {
@@ -81,6 +24,13 @@ export default function RatingAndReviews() {
       setReview("");
     }
   };
+  axios.post(RatingAndReviewsUrl)
+  .then( (response)=> {
+    console.log(response);
+  })
+  .catch((error) =>{
+    console.log(error);
+  });
 
   return (
     <div className="flex flex-col justify-center items-center min-h-[60vh]">
@@ -96,10 +46,10 @@ export default function RatingAndReviews() {
                   value={givenRating}
                   onClick={() => {
                     setRate(givenRating);
-                    // alert(
-                    //   `Are you sure you want to give
-                    // 	${givenRating} stars ?`
-                    // );
+                    alert(
+                      `Are you sure you want to give
+                    	${givenRating} stars ?`
+                    );
                   }}
                 />
                 <FaStar

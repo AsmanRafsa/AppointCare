@@ -5,12 +5,12 @@ export default function Footer() {
     <div className=" bg-gray-200 py-[1em]">
       <div className="mx-auto container flex flex-col justify-center items-center gap-3 pb-4">
         <div>
-          <p className="text-center">AppointCare</p>
-          <p className="text-center">
+          <p className="text-center font-[raleway]">AppointCare</p>
+          <p className="text-center font-[raleway]">
             P.O.Box: 76393 - 00508 <br />
             Nairobi, Kenya
           </p>
-          <p className="text-center">TEL: +254769661795</p>
+          <p className="text-center font-[raleway]">TEL: +254769661795</p>
         </div>
         <div className="flex gap-10">
           <div>

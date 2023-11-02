@@ -45,7 +45,7 @@ export default function Profileupdate() {
       <Nav className="flex flex-1" />
 
       <div className=" w-[] flex justify-center items-center">
-        <h1 className="text-[4rem] font-bold text-blue-400">
+        <h1 className="text-[4rem] font-bold text-blue-400 font-[poppins]">
           Update Your Profile
         </h1>
       </div>
@@ -55,7 +55,7 @@ export default function Profileupdate() {
           className="container mx-auto flex flex-col my-[3em] shadow-2xl justify-center items-center h-[100vh]"
         >
           <div className="">
-            <label className="my-[1em] font-medium text-[1.5rem] text-left">
+            <label className="my-[1em] font-medium text-[1.5rem] text-left font-[raleway]">
               Profile Picture
             </label>
             {/* {formErrors.file && (
@@ -72,7 +72,7 @@ export default function Profileupdate() {
               name="file"
               id=""
               placeholder="Add An Image Of The Hospital"
-              className="text-left bg-red  p-4  border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400 "
+              className="text-left bg-red  p-4 font-[raleway] border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400 "
             />
           </div>
 
@@ -81,7 +81,7 @@ export default function Profileupdate() {
               {/* {formErrors.phoneNumber && (
                 <p className="text-red-500">{formErrors.phoneNumber}</p>
               )} */}
-              <label className="my-[1em] font-medium text-[1.5rem] text-left">
+              <label className="my-[1em] font-medium text-[1.5rem] font-[raleway] text-left">
                 Phone Number
               </label>
               <input
@@ -90,14 +90,14 @@ export default function Profileupdate() {
                 }
                 type="text"
                 placeholder="Enter You Phone Number"
-                className="text-left bg-red  p-4  border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400"
+                className="text-left bg-red  p-4 font-[raleway] border-2 w-[30vw] border-gray-300 rounded-full flex outline-blue-400"
               />
             </div>
           </div>
 
           <button
             onClick={(e) => handleProfile(e)}
-            className="bg-[#3ba0f3] p-4 my-[1em] rounded-full text-white shadow font-medium"
+            className="bg-[#3ba0f3] p-4 my-[1em] font-[raleway] rounded-full text-white shadow font-medium"
           >
             Update Profile
           </button>

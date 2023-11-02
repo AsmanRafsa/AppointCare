@@ -43,49 +43,54 @@ function Booking() {
   }
 
   return (
-    <div className="text-xl mt-[15vh]">
-      {/* {console.log(hospitals)} */}
+    <div>
+    <div className="text-xl mt-[15vh] container mx-auto">
+      {console.log(hospitals)}
       <Nav />
-      <div className="border-2 flex border-blue-400 rounded-full p-6 container my-8 mx-auto">
+      <div className="border-2 flex border-blue-400 rounded-full p-6 my-8 mx-auto">
         <BiSearch size={40} />
         <input
           type="text"
           placeholder="Search"
-          className="border-none outline-none w-[100%]"
+          className="border-none font-[raleway] outline-none w-[100%]"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
-      <div className="flex justify-center gap-6 items-center flex-wrap my-[2em]">
+      <div className="flex gap-6 items-center flex-wrap my-[2em]">
         {hospitals.map((hospital) => {
           return (
-            <div className=" flex bg-blue-100  flex-col  w-[30%] items-center rounded-lg">
-              {console.log(searchTerm)}
+            <div className=" flex flex-col  rounded-lg shadow-[0_0_5px_lightgray]">
+              {/* {console.log(searchTerm)} */}
               <img
                 src={`${imageUrl}${hospital.hospital_Image}`}
                 alt=""
-                className="h-[30vh] w-[30vh] object-contain flex justify-center "
-                width={500}
-                height={500}
+                className="h-[150px] w-[250px]  "
+                
               />
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center mt-2">
                 <div className="flex justify-between text-blue-400">
-                  <p className="text-3xl"> {hospital.related_data.name}</p>
+                  <p className="text-[1.3rem] font-[raleway]"> {hospital.related_data.name}</p>
                 </div>
 
-                <p className="text-2xl text-center w-[80%]">
-                  {hospital.hospital_Location}
+                <p className="text-[1rem] font-[raleway] text-center w-[80%]">
+                  Location: {hospital.hospital_Location}
                 </p>
                 {isLogin.is_loggedin ?(
-                  <Link to={`/hospital/${hospital.id}`}>
-                  <button className="bg-[#3ba0f3] rounded-full py-3 my-4 text-white px-10">
-                    Book Now
-                  </button>
-                </Link>
+                //   <Link to={`/hospital/${hospital.id}`} className="w-[100%]">
+                //   <button className="bg-[#3ba0f3] rounded py-3 mt-4 text-white w-[100%]  ">
+                //     Book Now
+                //   </button>
+                // </Link>
+                 <Link to={`/hospital/${hospital.id}`}>
+                 <button className="bg-[#3ba0f3] rounded font-[raleway] py-3 mt-4 text-white px-10 my-2 ">
+                   Book Now
+                 </button>
+               </Link>
                 ):(
                   <Link to={`/login`}>
-                  <button className="bg-[#3ba0f3] rounded-full py-3 my-4 text-white px-10">
+                  <button className="bg-[#3ba0f3] rounded font-[raleway] py-3 my-4 text-white px-10">
                     Book Now
                   </button>
                 </Link>
@@ -99,6 +104,7 @@ function Booking() {
             </div>
           );
         })}
+      </div>
       </div>
       <Footer />
     </div>
