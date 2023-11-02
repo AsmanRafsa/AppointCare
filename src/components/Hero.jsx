@@ -4,17 +4,17 @@ export default function Hero() {
     <div className="bg-gradient-to-r from-gray-200 to-[#3ba0f3] mt-[15vh] ">
       <div className="container mx-auto flex items-center justify-center w-[100%] h-[70vh]  mb-[2em]">
         <div className="mt-5 w-[50%] p-10">
-          <h1 className="font-bold text-6xl w-[120%]">
+          <h1 className="font-bold text-6xl w-[120%] mb-[0.5em]">
             Your Health Is A Top Priority
           </h1>
-          <p className="text-[1.5rem] font-medium text-center mb-[1em]">
+          <p className="text-[1.5rem] font-medium  mb-[0.5em]">
             AppointCare considers everyone in the medical world.
           </p>
-          <p className="text-[1.2rem]  w-[120%]">
+          <p className="text-[1.2rem]  w-[120%] ">
             Are you a <span className="text-[#3ba0f3] text-[1.8rem] font-bold ">HOSPITAL</span> looking for where you can present your hospital ?
           </p>
-          <p className="text-center font-bold text-[2rem]">OR</p>
-          <p className="text-[1.2rem]  w-[120%]">
+          <p className="text-center font-bold text-[2rem] mb-[0.5em]">OR</p>
+          <p className="text-[1.2rem]  w-[120%] mb-[0.5em]">
             Are you a <span className="text-[#3ba0f3] text-[1.8rem] font-bold ">PATIENT</span>  who needs urgent treatment via set appointment ?
           </p>
           <p className=" text-[3rem] mb-3 text-center font-bold">

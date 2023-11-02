@@ -10,7 +10,7 @@ export default function Main() {
             10+ years of experience
           </p>
           <h2 className="font-bold text-[3rem]">
-            We Will Always Ensure{" "}
+            We Will Always Ensure
             <span className="text-[#3ba0f3]">Best Medical Treatment</span> For
             Your Health !
           </h2>
@@ -32,7 +32,7 @@ export default function Main() {
               billing and costs through one payment that we take out of the box.{" "}
             </p>
           </div>
-          <div className="flex-col gap-5 justify-between items-center">
+          <div className="flex-col  gap-5 justify-between items-center">
             <div className="flex gap-5 justify-center my-4">
               <AiFillCheckCircle style={{ color: "#3ba0f3" }} size={30} />
               <p className="text-xl font-medium">Happy Patients</p>
@@ -41,7 +41,7 @@ export default function Main() {
               <AiFillCheckCircle style={{ color: "#3ba0f3" }} size={30} />
               <p className="text-xl font-medium">Affordable Pricing</p>
             </div>
-            <div className="flex gap-5 justify-center my-4">
+            <div className="flex gap-5  justify-center my-4">
               <AiFillCheckCircle style={{ color: "#3ba0f3" }} size={30} />
               <p className="text-xl font-medium">Expert Doctors</p>
             </div>
