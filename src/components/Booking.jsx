@@ -5,12 +5,15 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Ratings from "./Ratings";
+// import Ratings from "./Ratings";
 
 function Booking() {
   // const { book, setBook, hospitals, setHospitals } = useContext(StateContext);
   const [searchTerm, setSearchTerm] = useState("");
   const { isLogin, setIsLogin } = useContext(StateContext);
+  const [filterOption, setFilterOption] = useState('all');
+  const [items, setItems] = useState([]);
+  const { isLogIn, setIsLogIn } = useContext(StateContext);
   const [hospitals, setHospitals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -49,6 +52,7 @@ function Booking() {
           type="text"
           placeholder="Search"
           className="border-none outline-none w-[100%]"
+          value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import saf from "../assets/images/safaricom.png";
-import { encode } from 'base-64';
+// import { encode } from 'base-64';
 
 const PaymentForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
