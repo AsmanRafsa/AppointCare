@@ -9,15 +9,12 @@ export default function LogoutHospital() {
 
 
 
-  const { isLogin, setIsLogin } = useContext(StateContext);
+  const { hospitalLogggedin, setHospitalLogggedin  } = useContext(StateContext);
   const navigate = useNavigate();
   function handleLogout() {
     localStorage.clear();
-    setIsLogin({
-      is_loggedin: false,
-      name: "",
-      email: "",
-      phone_number: "",
+    setHospitalLogggedin({
+      hospital_loggedin: false,
     });
     navigate("/");
   }

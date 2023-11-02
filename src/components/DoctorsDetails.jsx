@@ -2,19 +2,24 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import AddDoctorForm from "./AddDoctorForm";
 import { StateContext } from "../context/state";
-import PaymentPage from "../pages/PaymentPage";
+import axios from "axios";
 
 const DoctorDetails = () => {
+ 
   const { doctors, setDoctors } = useContext(StateContext);
   // const [doctors, setDoctors] = useState([]);
+  const [singleDoctor, setSingleDoctor] = useState({});
+  
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [newDoctor, setNewDoctor] = useState({
     doctorName: "",
     doctorImage: "", // You can store the image URL or file as needed
   });
+  const hospitalId = JSON.parse(localStorage.getItem("hospital")).id;
 
   const doctorsUrl = "http://127.0.0.1:8000/api/doctors/add/"; // Your API endpoint
   let imageUrl = "http://127.0.0.1:8000/api";
+  const singleDoctorUrl=`http://127.0.0.1:8000/api/doctorsdetail/7/`
 
   useEffect(() => {
     fetch(doctorsUrl)
@@ -32,18 +37,20 @@ const DoctorDetails = () => {
       });
   }, [doctors]);
 
-  const editDoctor = (index, updatedDoctor) => {
-    const updatedDoctors = [...doctors];
-    updatedDoctors[index] = updatedDoctor;
-    setDoctors(updatedDoctors);
-    setSelectedDoctor(null);
-  };
+  
 
-  const deleteDoctor = (index) => {
-    const updatedDoctors = [...doctors];
-    updatedDoctors.splice(index, 1);
-    setDoctors(updatedDoctors);
-  };
+  
+
+
+  function handleDelete() {
+
+    axios.delete(singleDoctorUrl,singleDoctor).then((response) => {
+      console.log(response);
+    });
+  }
+
+
+
 
   return (
     <div className="mt-[15vh] flex items-center gap-2 ">
@@ -52,7 +59,11 @@ const DoctorDetails = () => {
       <div className="flex-1 w-60%  items-center  gap-7 ">
       <div className="w-[40vw] h-[60vh]  p-[16px] overflow-y-auto">
         <ul className=" space-y-2">
-          {doctors.map((doctor, index) => (
+          {doctors.length===0?(
+            <p className="shadow-[0_0_5px_lightgray] h-[200px] flex text-white text-2xl bg-blue-500 m-[5em] items-center w-[300px] justify-center">No Doctors Added</p>
+          ):(
+            <>
+            {doctors.map((doctor, index) => (
             <li
               key={index}
               className="flex justify-between items-center p-2 bg-gray-100 text-gray-800  shadow-[0_0_5px_lightgray]"
@@ -87,7 +98,7 @@ const DoctorDetails = () => {
                     alt={doctor.doctorName}
                     className="rounded-full bg-slate-600 w-20 h-20  "
                   />
-                  <h3>{doctor.doctorName}</h3>
+                  <h3>Dr. {doctor.doctorName}</h3>
                   <p>{doctor.doctorSpeciality}</p>
                 </div>
               )}
@@ -101,14 +112,14 @@ const DoctorDetails = () => {
                   </button>
                 ) : (
                   <button
-                    onClick={() => setSelectedDoctor(index)}
-                    className="bg-blue-500 text-white p-2 rounded-lg mr-2"
+                    // onClick={() => setSelectedDoctor(index)}
+                    // className="bg-blue-500 text-white p-2 rounded-lg mr-2"
                   >
-                    Edit
+                    {/* Edit */}
                   </button>
                 )}
                 <button
-                  onClick={() => deleteDoctor(index)}
+                  onClick={() => handleDelete(index)}
                   className="bg-red-500 text-white p-2 rounded-lg"
                 >
                   Delete
@@ -116,6 +127,9 @@ const DoctorDetails = () => {
               </div>
             </li>
           ))}
+            </>
+          )}
+          
         </ul>
         </div>
 

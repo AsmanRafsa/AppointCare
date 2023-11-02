@@ -7,7 +7,13 @@ export default function StateProvider({ children }) {
   const [isLogin, setIsLogin] = useState({
     is_loggedin: localStorage.getItem("user") ? true : false,
   });
+  const [hospitalLogggedin, setHospitalLogggedin] = useState({
+    hospital_loggedin: localStorage.getItem("hospital") ? true : false,
+  });
   const [doctors, setDoctors] = useState([]);
+  const [hospitalAppointments, setHospitalAppointments] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+
   return (
     <StateContext.Provider
       value={{
@@ -17,10 +23,16 @@ export default function StateProvider({ children }) {
         setIsLogin,
         hospitals,
         setHospitals,
+        hospitalLogggedin,
+        setHospitalLogggedin,
         currentUser,
         setCurrentUser,
         doctors,
         setDoctors,
+        hospitalAppointments,
+        setHospitalAppointments,
+        notifications,
+        setNotifications,
       }}
     >
       {children}

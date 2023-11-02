@@ -18,8 +18,6 @@ export default function Logout() {
     localStorage.clear();
     setIsLogin({
       is_loggedIn: false,
-      username: "",
-      email: "",
     });
     navigate("/");
   }

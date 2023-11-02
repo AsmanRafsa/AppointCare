@@ -29,8 +29,6 @@ function HospitalDetails() {
   useEffect(() => {
     fetch(getHospitalDetailsUrl).then((res) =>
       res.json().then((data) => {
-        console.log(data);
-
         data.forEach(element => {
           if(element.hospital===hospitalId){
             // console.log(element)
@@ -79,28 +77,28 @@ function HospitalDetails() {
 
           <div className="flex flex-col">
             
-            <p className="my-2 text-blue-600">Hospital Name:</p>
+            <p className="my-2 text-blue-600 text-2xl">Hospital Name:</p>
           <input
               
               value={JSON.parse(localStorage.getItem("hospital")).name}
               type="text"
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl p-2 shadow-[0_0_4px_lightgray]"
             />
-            <p className="my-2 text-blue-600">Email Address:</p>
+            <p className="my-2 text-blue-600 text-2xl">Email Address:</p>
             <input
               
               value={JSON.parse(localStorage.getItem("hospital")).email}
               type="text"
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl p-2 shadow-[0_0_4px_lightgray]"
             />
-            <p className="my-2 text-blue-600">Phone Number:</p>
+            <p className="my-2 text-blue-600 text-2xl">Phone Number:</p>
             <input
               
               value={JSON.parse(localStorage.getItem("hospital")).phone_number}
               type="text"
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl p-2 shadow-[0_0_4px_lightgray]"
             />
-            <p className="my-2 text-blue-600">Hospital Slogan:</p>
+            <p className="my-2 text-blue-600 text-2xl">Hospital Slogan:</p>
             <input
               onChange={(e) =>
                 setAddHospital({
@@ -112,9 +110,9 @@ function HospitalDetails() {
               type="text"
               name="hospital_Slogan"
               placeholder="slogan"
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl p-2 shadow-[0_0_4px_lightgray]"
             />
-            <p className="my-2 text-blue-600">Upload Image:</p>
+            <p className="my-2 text-blue-600 text-2xl">Upload Image:</p>
             <input
               type="file"
               name="hospital_Image"
@@ -126,9 +124,9 @@ function HospitalDetails() {
                 })
               }
              
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl p-2 shadow-[0_0_4px_lightgray]"
             />
-            <p className="my-2 text-blue-600">Location:</p>
+            <p className="my-2 text-blue-600 text-2xl">Location:</p>
             <input
               type="text"
               name="hospital_Location"
@@ -142,12 +140,12 @@ function HospitalDetails() {
               }
               value={details.hospital_Location}
             />
-            <p className="my-2 text-blue-600">Brief HOspital Description:</p>
+            <p className="my-2 text-blue-600 text-2xl">Brief Hospital Description:</p>
             <textarea
               type="text"
               name="hospital_Description"
               placeholder="Description"
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl p-2 shadow-[0_0_4px_lightgray]"
               rows="3"
               value={details.hospital_Description}
               onChange={(e) =>

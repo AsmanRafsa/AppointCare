@@ -18,13 +18,13 @@ function LogIn() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch(userprofileUrl).then((res) =>
-          res.json().then((data) => {
-            setAllProfiles(data);
-          })
-        );
-  },[formData])
+      res.json().then((data) => {
+        setAllProfiles(data);
+      })
+    );
+  }, [formData]);
   function handleLogin(e) {
     e.preventDefault();
 
@@ -37,24 +37,28 @@ function LogIn() {
         localStorage.setItem("user", JSON.stringify(response.data));
         const loggedInUserId = JSON.parse(localStorage.getItem("user")).id;
 
-        // console.log(response);
-        
-        console.log(allProfiles);
-        allProfiles.forEach((element) => {
-          if (Object.values(element).includes(loggedInUserId)) {
-            console.log(element);
-            console.log("user has profile")
-            localStorage.setItem("userprofile", JSON.stringify(element))
-            navigate("/");
-          } else {
-            console.log("no profile")
-            navigate("/profileupdate");
-          }
-        });
-
         if (response.status === 200) {
-          isLogin.is_loggedIn = true;
+          isLogin.is_loggedin = true;
         }
+
+        console.log(allProfiles);
+        if (allProfiles.length === 0) {
+          navigate("/profileupdate");
+        } 
+        else {
+          allProfiles.forEach((element) => {
+            if (Object.values(element).includes(loggedInUserId)) {
+              console.log(element);
+              console.log("user has profile");
+              localStorage.setItem("userprofile", JSON.stringify(element));
+              navigate("/booking");
+            } else {
+              console.log("no profile");
+              navigate("/profileupdate");
+            }
+          });
+        }
+        
       });
 
     // console.log(isLogin.is_loggedIn);
@@ -122,15 +126,7 @@ function LogIn() {
             Sign in
           </button>
         </form>
-        <p className="my-10">OR</p>
-        <div className="flex items-center gap-8 my-12 justify-center">
-          <div>
-            <img src="" alt="" />
-          </div>
-          <div className="text-3xl text-blue-500 font-bold ">
-            <p>Log In With Google</p>
-          </div>
-        </div>
+        
         <p className="">
           Don't have an account yet?
           <Link to="/register">

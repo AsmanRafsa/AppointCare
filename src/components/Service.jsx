@@ -10,7 +10,7 @@ export default function Service() {
       <h1 className="text-center text-3xl font-bold">
         Services For Your Health
       </h1>
-      <div className="flex w-[100%] gap-10 my-5">
+      <div className="flex w-[100%] flex-row justify-center items-center gap-10 my-5">
         <div className="w-[20%] h-[30vh] shadow-2xl border-2 px-5 rounded-[5px]">
           <FaHeartbeat
             className="w-[100%] h-[20%]"

@@ -10,7 +10,7 @@ import Ratings from "./Ratings";
 function Booking() {
   // const { book, setBook, hospitals, setHospitals } = useContext(StateContext);
   const [searchTerm, setSearchTerm] = useState("");
-  const { isLogIn, setIsLogIn } = useContext(StateContext);
+  const { isLogin, setIsLogin } = useContext(StateContext);
   const [hospitals, setHospitals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,6 +18,7 @@ function Booking() {
   const imageUrl = "http://127.0.0.1:8000/api";
 
   useEffect(() => {
+    // console.log(isLogin.is_loggedin)
     axios
       .get(url, {})
       .then((response) => {
@@ -72,11 +73,24 @@ function Booking() {
                 <p className="text-2xl text-center w-[80%]">
                   {hospital.hospital_Location}
                 </p>
-                <Link to={`/hospital/${hospital.id}`}>
+                {isLogin.is_loggedin ?(
+                  <Link to={`/hospital/${hospital.id}`}>
                   <button className="bg-[#3ba0f3] rounded-full py-3 my-4 text-white px-10">
                     Book Now
                   </button>
                 </Link>
+                ):(
+                  <Link to={`/login`}>
+                  <button className="bg-[#3ba0f3] rounded-full py-3 my-4 text-white px-10">
+                    Book Now
+                  </button>
+                </Link>
+                )}
+                {/* <Link to={`/hospital/${hospital.id}`}>
+                  <button className="bg-[#3ba0f3] rounded-full py-3 my-4 text-white px-10">
+                    Book Now
+                  </button>
+                </Link> */}
               </div>
             </div>
           );

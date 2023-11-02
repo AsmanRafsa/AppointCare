@@ -9,7 +9,7 @@ function HospitalLogin(){
 
 
 
-  const { isLogin, setIsLogin } = useContext(StateContext);
+  const { hospitalLogggedin, setHospitalLogggedin } = useContext(StateContext);
 
     const [show, setShow] = useState();
     const [formData, setFormData] = useState([]);
@@ -35,15 +35,11 @@ function HospitalLogin(){
          phone_number:formData.phone_number
         })
         .then((response) => {
-          localStorage.setItem("hospital", JSON.stringify(response.data));
-          
-
-          console.log(response);
-  
           if (response.status === 200) {
-            isLogin.is_loggedin= true;
+            localStorage.setItem("hospital", JSON.stringify(response.data));  
+            hospitalLogggedin.hospital_loggedin= true;
   
-             navigate('/hospitaldashboard')
+             navigate('/')
           }
         });
 
