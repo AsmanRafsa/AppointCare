@@ -103,26 +103,34 @@ export default function Institution() {
 
           <div className="py-3 my-[3em] flex-col ">
             <p className="text-2xl">
-              <span className="text-4xl">|</span>{" "}
+              <span className="text-4xl font-[raleway]">|</span>{" "}
               {hospital && hospital.hospital_Slogan}
             </p>
-            <h1 className="text-5xl pt-4 text-blue-400">
+            <h1 className="text-5xl pt-4 text-blue-400 font-[poppins]">
               {hospital && hospital.related_data.name}
             </h1>
-            <p className="text-2xl py-4 text-blue-400">
+            <p className="text-2xl py-4 text-blue-400 font-[raleway]">
               {hospital && hospital.hospital_Location}
             </p>
             {/* <p className="text-2xl">{`${hospital.workingHours} Hours`}</p> */}
-            <p className="w-[80%] text-xl pt-4">
+            <p className="w-[80%] text-xl pt-4 font-[raleway]">
               {hospital && hospital.hospital_Description}
             </p>
           </div>
         </div>
         <div className="flex flex-col flex-1">
+ 
           <form action="" className="text-xl flex flex-col ">
             <div className="flex flex-col flex-1 items-center gap-6">
               <div className="w-[90%] ml-[1em] flex items-center gap-4 shadow-gray-500 p-5 bg-white flex-1 rounded py-5 px-6 shadow-[0_0_6px_lightgray] my-[0.5em]">
                 <p>Age:</p>{" "}
+
+          <h1 className="text-center text-5xl my-6 font-[poppins]">BOOK NOW</h1>
+          <form action="" className="text-xl flex flex-col ">
+            <div className="flex flex-col flex-1 items-center gap-6">
+              <div className="w-[90%] ml-[1em] flex items-center gap-4 border-2 border-blue-400 rounded-full p-3 bg-white">
+                <p className="font-[raleway]">Age:</p>{" "}
+ 
                 <input
                   name="patientAge"
                   type="number"
@@ -137,7 +145,10 @@ export default function Institution() {
                 name="patientDisease"
                 id=""
                 placeholder="Choose medical service"
+
                 className="w-[90%] ml-[1em] flex items-center gap-4 shadow-gray-500 p-5 bg-white flex-1 rounded py-5 px-6 shadow-[0_0_6px_lightgray] my-[0.5em] "
+
+ 
                 onChange={(e) => handleChange(e)}
               >
                 <option value="">Type Of Service</option>
@@ -177,14 +188,16 @@ export default function Institution() {
                   type="datetime-local"
                   name="timeBooked"
                   onChange={(e) => handleChange(e)}
-                  className="bg-white outline-none "
+                  className="bg-white font-[raleway] outline-none "
                 />
               </div>
             </div>
           </form>
           <div className="w-[100%] flex ">
             <button
+ 
               className="my-10 py-6 text-xl w-[40%] mx-auto bg-blue-500 rounded-[5px] text-white"
+
               onClick={(e) => {
                 handleBooking(e);
               }}

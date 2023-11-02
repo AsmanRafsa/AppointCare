@@ -4,92 +4,77 @@ import { Link, useNavigate } from "react-router-dom";
 import { StateContext } from "../context/state";
 import axios from "axios";
 
-function HospitalLogin(){
+export default function HospitalLogin() {
   const navigate = useNavigate(); // Access the history object
 
+  const { hospitalLogggedin, setHospitalLogggedin } = useContext(StateContext);
 
+  const [show, setShow] = useState();
+  const [formData, setFormData] = useState([]);
+  const [formErrors, setFormErrors] = useState({});
 
-  const { isLogin, setIsLogin } = useContext(StateContext);
+  const loginUrl = "http://127.0.0.1:8000/api/hospital/login";
 
-    const [show, setShow] = useState();
-    const [formData, setFormData] = useState([]);
-    const [formErrors, setFormErrors] = useState({});
-  
-    const loginUrl = "http://127.0.0.1:8000/api/hospital/login";
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+  function handleLogin(e) {
+    e.preventDefault(e);
+    console.log(formData);
 
-
-
-
-    function handleChange(e) {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
-    }
-    function handleLogin(e) {
-
-      e.preventDefault(e);
-      console.log(formData);
-  
-      axios
-        .post(loginUrl, {
-         email: formData.email,
-         password: formData.password,
-         phone_number:formData.phone_number
-        })
-        .then((response) => {
+    axios
+      .post(loginUrl, {
+        email: formData.email,
+        password: formData.password,
+        phone_number: formData.phone_number,
+      })
+      .then((response) => {
+        if (response.status === 200) {
           localStorage.setItem("hospital", JSON.stringify(response.data));
-          
+          hospitalLogggedin.hospital_loggedin = true;
 
-          console.log(response);
-  
-          if (response.status === 200) {
-            isLogin.is_loggedin= true;
-  
-             navigate('/hospitaldashboard')
-          }
-        });
+          navigate("/");
+        }
+      });
 
+    e.preventDefault();
+    const errors = {};
+    (formData.email === undefined || formData.email === "") &&
+      (errors.email = "Please enter your Email");
+    (formData.password === undefined || formData.password === "") &&
+      (errors.password = "Please enter your Password");
 
+    setFormErrors(errors);
+    console.log(errors);
+    console.log(formData);
+  }
 
-      
-      e.preventDefault();
-      const errors = {};
-      (formData.email === undefined || formData.email === "") &&
-        (errors.email = "Please enter your Email");
-      (formData.password === undefined || formData.password === "") &&
-        (errors.password = "Please enter your Password");
-  
-      setFormErrors(errors);
-      console.log(errors);
-      console.log(formData);
-    }
-
-    return(
-        <div className="text-xl mt-[15vh] bg-[url('assets/images/signin.png')] bg-repeat bg-cover bg-center h-[100vh]   ">
-      <div className="text-center w-[50%] mx-auto">
-        <h1 className="text-5xl font-bold mt-0 pt-36 pb-8">
-          Hospital Login Account
-        </h1>
+  return (
+    <div className="flex mt-[15vh] md:bg-cover bg-[url('assets/images/signin.png')] bg-no-repeat bg-contain bg-center w-[100%] ">
+      <div className="flex flex-col text-center mx-auto w-[100%] mt-[3em] mb-[2em]">
+        <h1 className="text-4xl font-bold mb-8 font-[poppins]">Hospital Login</h1>
         {/* <form action="" className="flex flex-col justify-center items-center"> */}
-        <form action="" className="flex flex-col">
-          <div className="flex flex-col gap-16">
+        <form action="" className="flex flex-col mx-auto w-[30%]">
+          <div className="flex flex-col gap-8">
             {formErrors.email && (
-              <p className="text-red-500">{formErrors.email}</p>
+              <p className="text-red-500 font-[raleway]">{formErrors.email}</p>
             )}
 
             <input
               type="email"
               placeholder="Email Address"
-              className="rounded-[5px] w-[70%] self-center py-6 px-6 border-2 border-gray-300 outline-none"
+              className="rounded py-5 px-6 font-[raleway] shadow-[0_0_6px_lightgray] outline-blue-400"
               name="email"
               onChange={(e) => handleChange(e)}
             />
             {formErrors.password && (
-              <p className="text-red-500">{formErrors.password}</p>
+              <p className="text-red-500 font-[raleway]">{formErrors.password}</p>
             )}
-            <div className="text-left bg-red rounded-[5px] py-6 px-6 border-2 border-gray-300 flex w-[70%] self-center">
+            <div className="rounded py-5 px-6 shadow-[0_0_6px_lightgray] outline-blue-400 flex items-center">
               <input
                 type={show ? "text" : "password"}
                 placeholder="Password"
-                className="w-[100%] outline-none"
+                className="w-[100%] font-[raleway] outline-none"
                 name="password"
                 onChange={(e) => handleChange(e)}
               />
@@ -98,31 +83,35 @@ function HospitalLogin(){
               </div>
             </div>
           </div>
-          <div className="flex my-16 justify-between w-[70%] self-center">
-            <div className="flex gap-4">
-              <input type="checkbox" className="w-6 h-6" />
-              <p>Remember me</p>
+          <div className="flex my-8 items-center justify-between">
+            <div className="flex gap-2">
+              <input type="checkbox" className="" />
+              <p className="text-[1rem] font-[raleway]">Remember me</p>
             </div>
             <div>
-              <p>Forgot Your Password?</p>
+              <Link>
+                <p className="text-[#318bd4] font-[raleway]">Forgot Your Password?</p>
+              </Link>
             </div>
           </div>
           <button
-            className="bg-[#318bd4] rounded-[5px] py-8 px-6 text-white text-2xl font-weight w-[70%] self-center"
+            className="bg-[#318bd4] font-[raleway] rounded-[5px] py-5 px-6 text-white text-[1.4rem]"
             onClick={(e) => handleLogin(e)}
           >
             Sign in
           </button>
         </form>
-
-        <p className="my-10">
-          Don't have an account yet?
+        <div className="flex items-center my-8 justify-center">
+        <p className="text-[1.1rem] font-[raleway]">
+          Don't have an account yet? <span>
           <Link to="/hospitalregister">
-            <span className="text-blue-400 cursor-pointer">Sign Up</span>
+            <span className="text-blue-400 cursor-pointer font-[raleway]">Create One</span>
           </Link>
+          </span>
         </p>
+        </div>
       </div>
     </div>
-    )
+  );
 }
-export default HospitalLogin
+

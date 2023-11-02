@@ -10,7 +10,8 @@ import axios from "axios";
 function Booking() {
   // const { book, setBook, hospitals, setHospitals } = useContext(StateContext);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterOption, setFilterOption] = useState("all");
+
+  const { isLogin, setIsLogin } = useContext(StateContext);
   const [items, setItems] = useState([]);
   const { isLogIn, setIsLogIn } = useContext(StateContext);
   const [hospitals, setHospitals] = useState([]);
@@ -20,6 +21,7 @@ function Booking() {
   const imageUrl = "http://127.0.0.1:8000/api";
 
   useEffect(() => {
+    // console.log(isLogin.is_loggedin)
     axios
       .get(url, {})
       .then((response) => {
@@ -44,22 +46,24 @@ function Booking() {
   }
 
   return (
-    <div className="text-xl mt-[15vh]">
-      {/* {console.log(hospitals)} */}
+    <div>
+    <div className="text-xl mt-[15vh] container mx-auto">
+      {console.log(hospitals)}
       <Nav />
-      <div className="border-2 flex border-blue-400 rounded-full p-6 container my-8 mx-auto">
+      <div className="border-2 flex border-blue-400 rounded-full p-6 my-8 mx-auto">
         <BiSearch size={40} />
         <input
           type="search"
           placeholder="Search"
-          className="border-none outline-none w-[100%]"
+          className="border-none font-[raleway] outline-none w-[100%]"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
-      <div className="flex justify-center gap-6 items-center flex-wrap my-[2em]">
+      <div className="flex gap-6 items-center flex-wrap my-[2em]">
         {hospitals.map((hospital) => {
+
           if (
             hospital.related_data.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             hospital.hospital_Location.toLowerCase().includes(searchTerm.toLowerCase())
@@ -91,10 +95,12 @@ function Booking() {
                     </button>
                   </Link>
                 </div>
+
               </div>
             );
           }
         })}
+      </div>
       </div>
       <Footer />
     </div>

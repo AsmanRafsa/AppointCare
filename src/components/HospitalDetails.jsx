@@ -29,8 +29,6 @@ function HospitalDetails() {
   useEffect(() => {
     fetch(getHospitalDetailsUrl).then((res) =>
       res.json().then((data) => {
-        console.log(data);
-
         data.forEach(element => {
           if(element.hospital===hospitalId){
             // console.log(element)
@@ -74,33 +72,33 @@ function HospitalDetails() {
       <div className="flex items-center bg-gray-200 w-[100%] gap-[5em] ">
        
         <div className=" w-[100%] bg-white ">
-          <h2 className="text-3xl ">Hospital's Details</h2>
+          <h2 className="text-3xl font-[poppins]">Hospital's Details</h2>
 
 
           <div className="flex flex-col">
             
-            <p className="my-2 text-blue-600">Hospital Name:</p>
+            <p className="my-2 text-blue-600 text-2xl font-[raleway]">Hospital Name:</p>
           <input
               
               value={JSON.parse(localStorage.getItem("hospital")).name}
               type="text"
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none font-[raleway] text-xl p-2 shadow-[0_0_4px_lightgray]"
             />
-            <p className="my-2 text-blue-600">Email Address:</p>
+            <p className="my-2 text-blue-600 text-2xl font-[raleway]">Email Address:</p>
             <input
               
               value={JSON.parse(localStorage.getItem("hospital")).email}
               type="text"
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl font-[raleway] p-2 shadow-[0_0_4px_lightgray]"
             />
-            <p className="my-2 text-blue-600">Phone Number:</p>
+            <p className="my-2 text-blue-600 text-2xl font-[raleway]">Phone Number:</p>
             <input
               
               value={JSON.parse(localStorage.getItem("hospital")).phone_number}
               type="text"
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl p-2 font-[raleway] shadow-[0_0_4px_lightgray]"
             />
-            <p className="my-2 text-blue-600">Hospital Slogan:</p>
+            <p className="my-2 text-blue-600 text-2xl font-[raleway]">Hospital Slogan:</p>
             <input
               onChange={(e) =>
                 setAddHospital({
@@ -112,9 +110,9 @@ function HospitalDetails() {
               type="text"
               name="hospital_Slogan"
               placeholder="slogan"
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl p-2 font-[raleway] shadow-[0_0_4px_lightgray]"
             />
-            <p className="my-2 text-blue-600">Upload Image:</p>
+            <p className="my-2 text-blue-600 text-2xl font-[raleway]">Upload Image:</p>
             <input
               type="file"
               name="hospital_Image"
@@ -126,14 +124,14 @@ function HospitalDetails() {
                 })
               }
              
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl p-2 shadow-[0_0_4px_lightgray] font-[raleway]"
             />
-            <p className="my-2 text-blue-600">Location:</p>
+            <p className="my-2 text-blue-600 text-2xl font-[raleway]">Location:</p>
             <input
               type="text"
               name="hospital_Location"
               placeholder="location"
-              className="outline-none p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none p-2 shadow-[0_0_4px_lightgray] font-[raleway]" 
               onChange={(e) =>
                 setAddHospital({
                   ...addHospital,
@@ -142,12 +140,12 @@ function HospitalDetails() {
               }
               value={details.hospital_Location}
             />
-            <p className="my-2 text-blue-600">Brief HOspital Description:</p>
+            <p className="my-2 text-blue-600 text-2xl font-[raleway]">Brief Hospital Description:</p>
             <textarea
               type="text"
               name="hospital_Description"
               placeholder="Description"
-              className="outline-none text-2xl p-2 shadow-[0_0_4px_lightgray]"
+              className="outline-none text-xl p-2 font-[raleway] shadow-[0_0_4px_lightgray]"
               rows="3"
               value={details.hospital_Description}
               onChange={(e) =>
@@ -160,7 +158,7 @@ function HospitalDetails() {
             <button
               onClick={(e) => handleAdd(e)}
               type="submit"
-              className="bg-blue-600 m-3 text-black  py-4 px-4 rounded-lg hover:bg-blue-600"
+              className="bg-blue-600 font-[raleway] m-3 text-black  py-4 px-4 rounded-lg hover:bg-blue-600"
             >
               update Hospital
             </button>

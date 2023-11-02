@@ -18,13 +18,13 @@ function LogIn() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch(userprofileUrl).then((res) =>
-          res.json().then((data) => {
-            setAllProfiles(data);
-          })
-        );
-  },[formData])
+      res.json().then((data) => {
+        setAllProfiles(data);
+      })
+    );
+  }, [formData]);
   function handleLogin(e) {
     e.preventDefault();
 
@@ -37,23 +37,25 @@ function LogIn() {
         localStorage.setItem("user", JSON.stringify(response.data));
         const loggedInUserId = JSON.parse(localStorage.getItem("user")).id;
 
-        // console.log(response);
-        
-        console.log(allProfiles);
-        allProfiles.forEach((element) => {
-          if (Object.values(element).includes(loggedInUserId)) {
-            console.log(element);
-            console.log("user has profile")
-            localStorage.setItem("userprofile", JSON.stringify(element))
-            navigate("/");
-          } else {
-            console.log("no profile")
-            navigate("/profileupdate");
-          }
-        });
-
         if (response.status === 200) {
-          isLogin.is_loggedIn = true;
+          isLogin.is_loggedin = true;
+        }
+
+        console.log(allProfiles);
+        if (allProfiles.length === 0) {
+          navigate("/profileupdate");
+        } else {
+          allProfiles.forEach((element) => {
+            if (Object.values(element).includes(loggedInUserId)) {
+              console.log(element);
+              console.log("user has profile");
+              localStorage.setItem("userprofile", JSON.stringify(element));
+              navigate("/booking");
+            } else {
+              console.log("no profile");
+              navigate("/profileupdate");
+            }
+          });
         }
       });
 
@@ -71,14 +73,11 @@ function LogIn() {
   }
 
   return (
-    <div className="text-xl bg-[url('assets/images/signin.png')] bg-no-repeat bg-contain bg-center h-[100vh]  ">
-      <div className="text-center w-[50%] mx-auto">
-        <h1 className="text-5xl font-bold mt-0 pt-36 pb-8">
-          Log in to your account
-        </h1>
-        {/* <form action="" className="flex flex-col justify-center items-center"> */}
-        <form action="" className="flex flex-col">
-          <div className="flex flex-col gap-16">
+    <div className="flex mt-[15vh] md:bg-cover bg-[url('assets/images/signin.png')] bg-no-repeat bg-contain bg-center   ">
+      <div className="flex flex-col text-center mx-auto w-[100%] mt-[3em] mb-[2em]">
+        <h1 className="text-4xl font-bold mb-7 mt-3">Log in to your account</h1>
+        <form action="" className="flex flex-col mx-auto w-[30%] ">
+          <div className="flex flex-col gap-8">
             {formErrors.email && (
               <p className="text-red-500">{formErrors.email}</p>
             )}
@@ -86,18 +85,18 @@ function LogIn() {
             <input
               type="text"
               placeholder="Username"
-              className="rounded-[5px] w-[80%] self-center py-6 px-6 border-2 border-gray-300 outline-none"
+              className="w-[80%] mx-auto rounded py-5 shadow-[0_0_6px_lightgray] outline-none px-3"
               name="username"
               onChange={(e) => handleChange(e)}
             />
             {formErrors.password && (
               <p className="text-red-500">{formErrors.password}</p>
             )}
-            <div className="text-left bg-red rounded-[5px] py-6 px-6 border-2 border-gray-300 flex w-[80%] self-center">
+            <div className="w-[80%] mx-auto rounded py-5 px-6 shadow-[0_0_6px_lightgray] outline-none flex items-center">
               <input
                 type={show ? "text" : "password"}
                 placeholder="Password"
-                className="w-[100%] outline-none"
+                className="w-[100%] outline-none px-3"
                 name="password"
                 onChange={(e) => handleChange(e)}
               />
@@ -106,37 +105,33 @@ function LogIn() {
               </div>
             </div>
           </div>
-          <div className="flex my-16 justify-between w-[80%] self-center">
-            <div className="flex gap-4">
-              <input type="checkbox" className="w-6 h-6" />
-              <p>Remember me</p>
+          <div className="flex my-8 items-center justify-between w-[80%] mx-auto">
+            <div className="flex gap-2">
+              <input type="checkbox" className="" />
+              <p className="text-[1rem]">Remember me</p>
             </div>
             <div>
-              <p>Forgot Your Password?</p>
+              <Link>
+                <p className="text-[#318bd4]">Forgot Your Password?</p>
+              </Link>
             </div>
           </div>
           <button
-            className="bg-[#318bd4] rounded-[5px] py-8 px-6 text-white text-2xl font-weight w-[80%] self-center"
+            className="bg-[#318bd4] rounded-[5px] py-5 px-6 text-white text-[1.4rem] w-[80%] mx-auto"
             onClick={(e) => handleLogin(e)}
           >
             Sign in
           </button>
         </form>
-        <p className="my-10">OR</p>
-        <div className="flex items-center gap-8 my-12 justify-center">
-          <div>
-            <img src="" alt="" />
-          </div>
-          <div className="text-3xl text-blue-500 font-bold ">
-            <p>Log In With Google</p>
-          </div>
+        <div className="flex items-center my-8 justify-center">
+          <p className="text-[1.1rem]">
+            Don't have an account yet? <span>
+            <Link to="/register">
+              <span className="text-blue-400 cursor-pointer">Sign Up</span>
+            </Link>
+            </span>
+          </p>
         </div>
-        <p className="">
-          Don't have an account yet?
-          <Link to="/register">
-            <span className="text-blue-400 cursor-pointer">Sign Up free</span>
-          </Link>
-        </p>
       </div>
     </div>
   );
