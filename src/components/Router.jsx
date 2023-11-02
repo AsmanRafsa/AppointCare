@@ -15,6 +15,8 @@ import PaymentPage from "../pages/PaymentPage";
 import Logout from "./Logout";
 import Profileupdate from "./Profileupdate";
 import UserprofilePage from "../pages/UserprofilePage";
+import Profileedit from "./profileEdit";
+import RatingAndReviews from "./RatingAndReviews"
 export default function Router() {
   return (
     <BrowserRouter>
@@ -34,7 +36,9 @@ export default function Router() {
         <Route path="/pay" element={<PaymentPage />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/profileupdate" element={<Profileupdate />} />
+        <Route path="/edit" element={<Profileedit />} />
         <Route path="/profile" element={<UserprofilePage />} />
+        <Route path="/rating" element={<RatingAndReviews />} />
 
 
 

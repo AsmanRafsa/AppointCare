@@ -3,12 +3,12 @@ import Userprofile from "../components/Userprofile";
 import Nav from "../components/Nav";
 
 function UserprofilePage() {
-    return(
-        <div>
-            <Nav/>
-            <Userprofile />
-            <Footer/>
-        </div>
-    )
+  return (
+    <div>
+      <Nav />
+      <Userprofile />
+      <Footer/>
+    </div>
+  );
 }
-export default UserprofilePage
+export default UserprofilePage;
