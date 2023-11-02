@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Nav from "./Nav";
 import { useContext } from "react";
 import { StateContext } from "../context/state";
-import Ratings from "./Ratings";
+// import Ratings from "./Ratings";
 
 export default function LogoutHospital() {
 
