@@ -15,7 +15,7 @@ export default function Institution() {
   const [bookingData, setBookingdata] = useState(null);
 
   const hid = useParams();
-  console.log(hid)
+  console.log(hid);
 
   const [error, setError] = useState(null);
   // const hospitalId=JSON.parse(localStorage.getItem("user")).id;
@@ -55,10 +55,10 @@ export default function Institution() {
     e.preventDefault();
     const hospitalId = parseInt(hid.id);
     const id = JSON.parse(localStorage.getItem("userprofile")).user;
-    console.log(id)
+    console.log(id);
 
-    const dataUpdate = {...bookingData, hospital:hospitalId, user:id}
-    console.log(dataUpdate)
+    const dataUpdate = { ...bookingData, hospital: hospitalId, user: id };
+    console.log(dataUpdate);
     axios.post(bookingUrl, dataUpdate).then((response) => {
       console.log(response);
       // if (response.status === 200) {
@@ -83,28 +83,25 @@ export default function Institution() {
     // setFormErrors(errors);
     // console.log(errors);
     // console.log(formData);
-
-
-   
-
-
-
   }
   return (
     // <div className="">
 
     <div className=" bg-[url('assets/images/bg.jpeg')] bg-no-repeat bg-cover py-[5em]">
-      <div className="flex container mx-auto justify-between items-center">
+      <div className="flex justify-center items-center">
+        <h1 className="text-[3rem] font-bold mt-[2em]">BOOK NOW</h1>
+      </div>
+      <div className="flex container mx-auto justify-center items-center mt-[-10em]">
         <div className="flex flex-col flex-1 ">
-          <div className="w-[500px] h-[500px] rounded-s-lg flex-1 mt-[2.5em] p-[3em]">
+          <div className="w-[500px] h-[500px] rounded-s-lg flex-1 mt-[12em]">
             <img
               src={`${imageUrl}${hospital && hospital.hospital_Image}`}
               alt=""
-              className="h-[100%] w-[100%] object-contain flex justify-center rounded-s-lg"
+              className="h-[50%] w-[70%] object-contain flex justify-center rounded-s-lg"
             />
           </div>
 
-          <div className="py-3 flex-1 flex-col ">
+          <div className="py-3 my-[3em] flex-col ">
             <p className="text-2xl">
               <span className="text-4xl font-[raleway]">|</span>{" "}
               {hospital && hospital.hospital_Slogan}
@@ -122,11 +119,18 @@ export default function Institution() {
           </div>
         </div>
         <div className="flex flex-col flex-1">
+ 
+          <form action="" className="text-xl flex flex-col ">
+            <div className="flex flex-col flex-1 items-center gap-6">
+              <div className="w-[90%] ml-[1em] flex items-center gap-4 shadow-gray-500 p-5 bg-white flex-1 rounded py-5 px-6 shadow-[0_0_6px_lightgray] my-[0.5em]">
+                <p>Age:</p>{" "}
+
           <h1 className="text-center text-5xl my-6 font-[poppins]">BOOK NOW</h1>
           <form action="" className="text-xl flex flex-col ">
             <div className="flex flex-col flex-1 items-center gap-6">
               <div className="w-[90%] ml-[1em] flex items-center gap-4 border-2 border-blue-400 rounded-full p-3 bg-white">
                 <p className="font-[raleway]">Age:</p>{" "}
+ 
                 <input
                   name="patientAge"
                   type="number"
@@ -141,7 +145,10 @@ export default function Institution() {
                 name="patientDisease"
                 id=""
                 placeholder="Choose medical service"
-                className="w-[90%] font-[raleway] rounded-full p-3 outline-gray-200 bg-white border-2 border-blue-400"
+
+                className="w-[90%] ml-[1em] flex items-center gap-4 shadow-gray-500 p-5 bg-white flex-1 rounded py-5 px-6 shadow-[0_0_6px_lightgray] my-[0.5em] "
+
+ 
                 onChange={(e) => handleChange(e)}
               >
                 <option value="">Type Of Service</option>
@@ -174,7 +181,7 @@ export default function Institution() {
                   Antenatal and Postnatal Services
                 </option>
               </select>
-              <div className="w-[90%] ml-[1em] flex items-center gap-4 border-2 border-blue-400 rounded-full p-3 bg-white">
+              <div className="w-[90%] ml-[1em] flex items-center gap-4 shadow-gray-500 p-5 bg-white flex-1 rounded py-5 px-6 shadow-[0_0_6px_lightgray] my-[0.5em]">
                 <p>Date:</p>
 
                 <input
@@ -188,7 +195,9 @@ export default function Institution() {
           </form>
           <div className="w-[100%] flex ">
             <button
-              className="my-10 py-6 font-[raleway] text-xl w-[40%] mx-auto bg-blue-500 rounded-full text-white"
+ 
+              className="my-10 py-6 text-xl w-[40%] mx-auto bg-blue-500 rounded-[5px] text-white"
+
               onClick={(e) => {
                 handleBooking(e);
               }}

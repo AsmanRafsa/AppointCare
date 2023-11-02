@@ -10,8 +10,8 @@ import axios from "axios";
 function Booking() {
   // const { book, setBook, hospitals, setHospitals } = useContext(StateContext);
   const [searchTerm, setSearchTerm] = useState("");
+
   const { isLogin, setIsLogin } = useContext(StateContext);
-  const [filterOption, setFilterOption] = useState('all');
   const [items, setItems] = useState([]);
   const { isLogIn, setIsLogIn } = useContext(StateContext);
   const [hospitals, setHospitals] = useState([]);
@@ -32,6 +32,9 @@ function Booking() {
         setError(err);
         setLoading(false);
       });
+    console.log(
+      hospitals.filter((hospital) => hospital.hospital_Location.includes("Na"))
+    );
   }, []);
 
   if (loading) {
@@ -50,7 +53,7 @@ function Booking() {
       <div className="border-2 flex border-blue-400 rounded-full p-6 my-8 mx-auto">
         <BiSearch size={40} />
         <input
-          type="text"
+          type="search"
           placeholder="Search"
           className="border-none font-[raleway] outline-none w-[100%]"
           value={searchTerm}
@@ -60,49 +63,42 @@ function Booking() {
 
       <div className="flex gap-6 items-center flex-wrap my-[2em]">
         {hospitals.map((hospital) => {
-          return (
-            <div className=" flex flex-col  rounded-lg shadow-[0_0_5px_lightgray]">
-              {/* {console.log(searchTerm)} */}
-              <img
-                src={`${imageUrl}${hospital.hospital_Image}`}
-                alt=""
-                className="h-[150px] w-[250px]  "
-                
-              />
-              <div className="flex flex-col items-center mt-2">
-                <div className="flex justify-between text-blue-400">
-                  <p className="text-[1.3rem] font-[raleway]"> {hospital.related_data.name}</p>
+
+          if (
+            hospital.related_data.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            hospital.hospital_Location.toLowerCase().includes(searchTerm.toLowerCase())
+          ) {
+            return (
+              <div
+                key={hospital.id}
+                className=" flex bg-blue-100  flex-col  w-[30%] items-center rounded-lg"
+              >
+                {console.log(searchTerm)}
+                <img
+                  src={`${imageUrl}${hospital.hospital_Image}`}
+                  alt=""
+                  className="h-[30vh] w-[30vh] object-contain flex justify-center "
+                  width={500}
+                  height={500}
+                />
+                <div className="flex flex-col items-center">
+                  <div className="flex justify-between text-blue-400">
+                    <p className="text-3xl"> {hospital.related_data.name}</p>
+                  </div>
+
+                  <p className="text-2xl text-center w-[80%]">
+                    {hospital.hospital_Location}
+                  </p>
+                  <Link to={`/hospital/${hospital.id}`}>
+                    <button className="bg-[#3ba0f3] rounded-full py-3 my-4 text-white px-10">
+                      Book Now
+                    </button>
+                  </Link>
                 </div>
 
-                <p className="text-[1rem] font-[raleway] text-center w-[80%]">
-                  Location: {hospital.hospital_Location}
-                </p>
-                {isLogin.is_loggedin ?(
-                //   <Link to={`/hospital/${hospital.id}`} className="w-[100%]">
-                //   <button className="bg-[#3ba0f3] rounded py-3 mt-4 text-white w-[100%]  ">
-                //     Book Now
-                //   </button>
-                // </Link>
-                 <Link to={`/hospital/${hospital.id}`}>
-                 <button className="bg-[#3ba0f3] rounded font-[raleway] py-3 mt-4 text-white px-10 my-2 ">
-                   Book Now
-                 </button>
-               </Link>
-                ):(
-                  <Link to={`/login`}>
-                  <button className="bg-[#3ba0f3] rounded font-[raleway] py-3 my-4 text-white px-10">
-                    Book Now
-                  </button>
-                </Link>
-                )}
-                {/* <Link to={`/hospital/${hospital.id}`}>
-                  <button className="bg-[#3ba0f3] rounded-full py-3 my-4 text-white px-10">
-                    Book Now
-                  </button>
-                </Link> */}
               </div>
-            </div>
-          );
+            );
+          }
         })}
       </div>
       </div>
